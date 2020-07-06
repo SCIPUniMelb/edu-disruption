@@ -23,7 +23,7 @@ navbar:
           href: defs.html
     - text: "SCIP web"
       icon: fa-address-card
-      href: https://twitter.com/SCIPUniMelb
+      href: https://scip.unimelb.edu.au/
     - text: "Twitter"
       icon: fa-twitter
       href: https://twitter.com/SCIPUniMelb
