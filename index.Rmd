@@ -1,0 +1,42 @@
+---
+title: 'edu-disruption'
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r child = "setup.Rmd"}
+```
+
+These resources have been created to use publicly available data on the internet in order to explore specific questions on the impact of the COVID-19 pandemic on teaching practices.
+
+<br>
+
+## Broad research question(s)
+*"..what educators have learned from teaching during the pandemic, how their practices have been disrupted, what kind of innovations have resulted from this and how these are evolving."*
+
+<br>
+
+## Broad methodology
+
+This resource draws on a number of R programming packages and approaches. The broad approach incldues the following stages:
+
+1. Collect public data 
+2. Clean and prepare the text data
+3. Carry out analysis
+
+<br>
+
+### Data collection
+
+* [data through web scraping](scraping-data.html)
+* [data through use of api](api-data.html)
+* [existing open data](open-data.html)
+
+<br>
+
+### Resources
+
+* [Definitions](defs.html) - Definitions of ....
+* [support files](support_files.html) - Definitions of ....
+
+<br> <br>
+

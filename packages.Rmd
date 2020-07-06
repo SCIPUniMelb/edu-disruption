@@ -1,0 +1,25 @@
+---
+title: "R packages"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    self_contained: no
+    toc: yes
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+## Packages used
+
+The Tidyverse package installs a number of other packages for reading data:  
+
+•  [httr](https://github.com/r-lib/httr) for web APIs.  
+•  [rvest](https://github.com/tidyverse/rvest) for web scraping.  
+
+•  [jsonlite](https://github.com/jeroen/jsonlite) for reading JSON data. 
+
+

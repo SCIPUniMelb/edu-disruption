@@ -1,0 +1,39 @@
+name: edu-disruption
+output_dir: 'docs'
+author: Greg D'Arcy
+  title: edu-disruption
+  type: inverse
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "More"
+      icon: fa-gear
+      menu:
+        - text: "Heading 1"
+        - text: "Page A"
+          href: page_a.html
+        - text: "Page B"
+          href: page_b.html
+        - text: "---------"
+        - text: "Heading 2"
+        - text: "Packages"
+          href: packages.html
+        - text: "Glossary"
+          href: defs.html
+    - text: "SCIP web"
+      icon: fa-address-card
+      href: https://twitter.com/SCIPUniMelb
+    - text: "Twitter"
+      icon: fa-twitter
+      href: https://twitter.com/SCIPUniMelb
+output:
+  html_document:
+    theme: cerulean
+    css: mystyle.css
+    lib_dir: site_libs
+    self_contained: no
+    fig_caption: yes
+    includes:
+      after_body: footer.html
+
+

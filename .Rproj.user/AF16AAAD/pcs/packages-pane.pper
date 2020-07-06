@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "/Users/gdarcy1/Library/R/3.5/library",
+        "installDependencies": true
+    }
+}

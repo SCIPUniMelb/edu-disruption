@@ -1,0 +1,75 @@
+---
+title: "data through web scraping"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    self_contained: no
+    toc: yes
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+## Scope
+The source of data were blogs 
+
+### Blogs
+
+1. https://edublogs.org 
+2. https://www.blogger.com
+
+[https://edublogs.org/robots.txt](https://edublogs.org/robots.txt)
+
+[https://developers.google.com/blogger](https://developers.google.com/blogger)
+
+
+1.	Go to Google.com.
+2.	Enter site:www.website.com and 'Search Term' into the search box.
+3.	Refine your search.
+
+
+
+Find Blogs on Blogger through Google web search. To find a blogger on Google you have to make the following queries in to the Google.
+
+`site:blogger.com Search_Term`  
+OR  
+`site:blogspot.com Search_Term`  
+OR
+`site:edutopia.org covid virtual pedagogy` 
+
+
+
+[site:blogger.com distance education](https://www.google.com/search?client=firefox-b-d&q=site%3Ablogger.com+distance+education)  
+OR
+[site:edublogs.org covid pedagogy](https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy)
+
+`site:edutopia.org covid virtual pedagogy` 
+https://www.edutopia.org/terms-of-use
+
+
+
+
+
+https://visualisingideas.edublogs.org/2020/03/
+https://scis.edublogs.org/tag/remote-learning/
+
+https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/
+https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/ 
+https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/
+
+
+### Twitter (threads)
+
+@threadreaderapp 'unroll'
+[Twitter thread vy @YaeganDoran](https://threadreaderapp.com/thread/1272337288249217025.html)
+
+
+
+
+
+
+
+
