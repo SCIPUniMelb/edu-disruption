@@ -1,6 +1,7 @@
 name: edu-disruption
 output_dir: 'docs'
 author: Greg D'Arcy
+navbar:
   title: edu-disruption
   type: inverse
   right:
