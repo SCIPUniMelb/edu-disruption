@@ -16,14 +16,13 @@ navbar:
         - text: "Page B"
           href: page_b.html
         - text: "---------"
+        - text: "API slides"
+          href: slides/rc-apis.html          
         - text: "Support docs"
         - text: "Packages"
           href: packages.html
         - text: "Glossary"
           href: defs.html
-        - text: "API slides"
-          href: /slides/rc-apis.html          
-          
     - text: "SCIP web"
       icon: fa-address-card
       href: https://scip.unimelb.edu.au/
