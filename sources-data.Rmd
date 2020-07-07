@@ -1,5 +1,5 @@
 ---
-title: "data through web scraping"
+title: "data sources"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
@@ -13,16 +13,12 @@ output:
 ```{r child = "setup.Rmd"}
 ```
 
-## Scope
-Additional data spources
+## Data sources
 
 
 https://developer.twitter.com/en/use-cases/academic-researchers/products-for-researchers
 
 https://developer.twitter.com/en/docs/tweets/search/guides/premium-operators  
-
-
-
 
 https://developers.facebook.com/ads/blog/post/2018/05/15/facebook-reach-frequency-api/  
 

@@ -360,7 +360,10 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -371,15 +374,21 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Heading 1</li>
+    <li class="dropdown-header">Collect data</li>
     <li>
-      <a href="page_a.html">Page A</a>
+      <a href="api-data.html">APIs</a>
     </li>
     <li>
-      <a href="page_b.html">Page B</a>
+      <a href="scraping-data.html">Web scraping</a>
+    </li>
+    <li>
+      <a href="sources-data.html">Data sources</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Heading 2</li>
+    <li class="dropdown-header">Support docs</li>
+    <li>
+      <a href="slides/rc-apis.html">API slides</a>
+    </li>
     <li>
       <a href="packages.html">Packages</a>
     </li>
@@ -412,7 +421,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">data through web scraping</h1>
-<h4 class="date">06 July, 2020</h4>
+<h4 class="date">07 July, 2020</h4>
 
 </div>
 
@@ -443,6 +452,148 @@ OR <a href="https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy">
 <p><code>site:edutopia.org covid virtual pedagogy</code> <a href="https://www.edutopia.org/terms-of-use" class="uri">https://www.edutopia.org/terms-of-use</a></p>
 <p><a href="https://visualisingideas.edublogs.org/2020/03/" class="uri">https://visualisingideas.edublogs.org/2020/03/</a> <a href="https://scis.edublogs.org/tag/remote-learning/" class="uri">https://scis.edublogs.org/tag/remote-learning/</a></p>
 <p><a href="https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/" class="uri">https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/</a> <a href="https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/" class="uri">https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/</a> <a href="https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/" class="uri">https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/</a></p>
+<pre class="r"><code># https://towardsdatascience.com/tidy-web-scraping-in-r-tutorial-and-resources-ac9f72b4fe47
+
+if (!(&quot;rvest&quot; %in% installed.packages())) {
+ install.packages(&quot;rvest&quot;)
+}
+
+if (!(&quot;dplyr&quot; %in% installed.packages())) {
+ install.packages(&quot;dplyr&quot;)
+}
+
+library(rvest)
+#&gt; Loading required package: xml2
+library(dplyr)
+#&gt; 
+#&gt; Attaching package: &#39;dplyr&#39;
+#&gt; The following objects are masked from &#39;package:stats&#39;:
+#&gt; 
+#&gt;     filter, lag
+#&gt; The following objects are masked from &#39;package:base&#39;:
+#&gt; 
+#&gt;     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>hot100page &lt;- &quot;https://www.billboard.com/charts/hot-100&quot;
+hot100 &lt;- read_html(hot100page)
+
+hot100
+#&gt; {html_document}
+#&gt; &lt;html class=&quot;&quot; lang=&quot;&quot;&gt;
+#&gt; [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
+#&gt; [2] &lt;body class=&quot;chart-page chart-page-&quot; data-trackcategory=&quot;Charts-TheHot100 ...
+str(hot100)
+#&gt; List of 2
+#&gt;  $ node:&lt;externalptr&gt; 
+#&gt;  $ doc :&lt;externalptr&gt; 
+#&gt;  - attr(*, &quot;class&quot;)= chr [1:2] &quot;xml_document&quot; &quot;xml_node&quot;</code></pre>
+<pre class="r"><code>#  list of nodes inside the body of the page.
+body_nodes &lt;- hot100 %&gt;% 
+ html_node(&quot;body&quot;) %&gt;% 
+ html_children()
+
+body_nodes
+#&gt; {xml_nodeset (36)}
+#&gt;  [1] &lt;div class=&quot;header-wrapper &quot;&gt;\n&lt;header id=&quot;site-header&quot; class=&quot;site-head ...
+#&gt;  [2] &lt;div class=&quot;site-header__placeholder&quot;&gt;&lt;/div&gt;
+#&gt;  [3] &lt;script&gt;\n        var PGM = window.PGM || {};\n        PGM.config = PGM. ...
+#&gt;  [4] &lt;div class=&quot;chart-piano-overlay__attachment-point&quot;&gt;&lt;/div&gt;
+#&gt;  [5] &lt;main id=&quot;main&quot; class=&quot;page-content&quot;&gt;&lt;div id=&quot;charts&quot; data-page-title=&quot;T ...
+#&gt;  [6] &lt;div class=&quot;ad_desktop dfp-ad dfp-ad-promo &quot; data-position=&quot;promo&quot; data- ...
+#&gt;  [7] &lt;div class=&quot;ad-container footerboard footerboard--bottom&quot;&gt;\n    &lt;div cla ...
+#&gt;  [8] &lt;footer id=&quot;site-footer&quot; class=&quot;site-footer&quot;&gt;&lt;div class=&quot;container foote ...
+#&gt;  [9] &lt;div class=&quot;biz-modal&quot;&gt;\n    &lt;div class=&quot;biz-modal__content&quot;&gt;\n        &lt; ...
+#&gt; [10] &lt;script&gt;\n    window.CLARITY = window.CLARITY || [];\n&lt;/script&gt;
+#&gt; [11] &lt;div class=&quot;ad_clarity&quot; data-out-of-page=&quot;true&quot; style=&quot;display: none;&quot;&gt;&lt; ...
+#&gt; [12] &lt;script&gt;\n    var darkMatterCMD = function() {\n        this.darkMatterC ...
+#&gt; [13] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/art ...
+#&gt; [14] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/clo ...
+#&gt; [15] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
+#&gt; [16] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
+#&gt; [17] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
+#&gt; [18] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
+#&gt; [19] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/default_/art ...
+#&gt; [20] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/default_/rea ...
+#&gt; ...</code></pre>
+<pre class="r"><code>rank &lt;- hot100 %&gt;% 
+  rvest::html_nodes(&#39;body&#39;) %&gt;% 
+  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__rank__number&#39;)]&quot;) %&gt;% 
+  rvest::html_text()
+
+artist &lt;- hot100 %&gt;% 
+  rvest::html_nodes(&#39;body&#39;) %&gt;% 
+  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__information__artist&#39;)]&quot;) %&gt;% 
+  rvest::html_text()
+
+title &lt;- hot100 %&gt;% 
+  rvest::html_nodes(&#39;body&#39;) %&gt;% 
+  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__information__song&#39;)]&quot;) %&gt;% 
+  rvest::html_text()
+
+chart_df &lt;- data.frame(rank, artist, title)
+
+knitr::kable(
+  chart_df  %&gt;% head(10))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">rank</th>
+<th align="left">artist</th>
+<th align="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">DaBaby Featuring Roddy Ricch</td>
+<td align="left">Rockstar</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">Megan Thee Stallion Featuring Beyonce</td>
+<td align="left">Savage</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">The Weeknd</td>
+<td align="left">Blinding Lights</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">SAINt JHN</td>
+<td align="left">Roses</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">Justin Bieber Featuring Quavo</td>
+<td align="left">Intentions</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">Doja Cat Featuring Nicki Minaj</td>
+<td align="left">Say So</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">Lil Baby</td>
+<td align="left">The Bigger Picture</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">Jack Harlow Featuring DaBaby, Tory Lanez &amp; Lil Wayne</td>
+<td align="left">Whats Poppin</td>
+</tr>
+<tr class="odd">
+<td align="left">9</td>
+<td align="left">Lil Mosey</td>
+<td align="left">Blueberry Faygo</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">Post Malone</td>
+<td align="left">Circles</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="twitter-threads" class="section level3">
 <h3>Twitter (threads)</h3>

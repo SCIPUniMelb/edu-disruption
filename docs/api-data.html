@@ -360,7 +360,10 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -371,15 +374,21 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Heading 1</li>
+    <li class="dropdown-header">Collect data</li>
     <li>
-      <a href="page_a.html">Page A</a>
+      <a href="api-data.html">APIs</a>
     </li>
     <li>
-      <a href="page_b.html">Page B</a>
+      <a href="scraping-data.html">Web scraping</a>
+    </li>
+    <li>
+      <a href="sources-data.html">Data sources</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Heading 2</li>
+    <li class="dropdown-header">Support docs</li>
+    <li>
+      <a href="slides/rc-apis.html">API slides</a>
+    </li>
     <li>
       <a href="packages.html">Packages</a>
     </li>
@@ -389,7 +398,7 @@ div.tocify {
   </ul>
 </li>
 <li>
-  <a href="https://twitter.com/SCIPUniMelb">
+  <a href="https://scip.unimelb.edu.au/">
     <span class="fa fa-address-card"></span>
      
     SCIP web
@@ -412,7 +421,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">api for data</h1>
-<h4 class="date">06 July, 2020</h4>
+<h4 class="date">07 July, 2020</h4>
 
 </div>
 
@@ -420,7 +429,7 @@ div.tocify {
 <div id="scope" class="section level2">
 <h2>Scope</h2>
 <p>The source of data were Twitter APIs</p>
-<p><a href="https://developer.twitter.com/en/developer-terms/more-on-restricted-use-casesl">More about restricted uses of the Twitter APIs</a></p>
+<p><a href="https://developer.twitter.com/en/developer-terms/more-on-restricted-use-cases">More about restricted uses of the Twitter APIs</a></p>
 <pre class="r"><code>
 install.packages(&quot;httr&quot;)
 #&gt; Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror
@@ -453,7 +462,7 @@ posts&lt;-as.data.frame(posts)
 library(XML)
 
 trove_base_url = &quot;http://api.trove.nla.gov.au/v2/result?key=&quot;
-api_key = &quot;3fa0o2759s1qasoi&quot;
+api_key = &quot;TROVE_KEY&quot;
 zone = &quot;&amp;zone=&quot;
 query = &quot;&amp;q=&quot;
 type = &quot;&amp;encoding=json&quot;

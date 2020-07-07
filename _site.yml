@@ -10,15 +10,17 @@ navbar:
     - text: "More"
       icon: fa-gear
       menu:
-        - text: "Heading 1"
-        - text: "Page A"
-          href: page_a.html
-        - text: "Page B"
-          href: page_b.html
-        - text: "---------"
+        - text: "Collect data"
+        - text: "APIs"
+          href: api-data.html
+        - text: "Web scraping"
+          href: scraping-data.html
+        - text: "Data sources"
+          href: sources-data.html          
+        - text: "---------"          
+        - text: "Support docs"          
         - text: "API slides"
           href: slides/rc-apis.html          
-        - text: "Support docs"
         - text: "Packages"
           href: packages.html
         - text: "Glossary"
