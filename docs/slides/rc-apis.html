@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>A gentle introduction to APIs for humanities and social science researchers.   😄</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Greg D’Arcy" />
+    <meta name="date" content="2020-06-30" />
+    <link href="rc-apis_files/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="rc-apis_files/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+class: title-slide, top, left
+background-image: url(img/rc_apis_2020.jpg)
+background-size: contain
+
+---
+
+class: center, middle
+
+.alert[
+**Researchers from all corners of academia and the private and public sectors are collecting and analyzing textual data from online platforms, and they are using this data to answer questions about social attitudes, trends and fashions, consumer behavior, political deliberations, social interactions, interpersonal relationships, and many other social phenomena.**  
+&lt;br&gt; 
+*Text mining: A guidebook for the social sciences.* Gabe Ignatow and Raha Micalcea, 2017.
+]
+
+---
+
+![](img/SixDegreesBacon.png) 
+
+The web provides researchers with endless possibilities in areas such as **Machine learning, Natural language processing, Social network analysis, Topic modelling and Data Visualisation**.   
+
+.footnote[
+Source: http://www.sixdegreesoffrancisbacon.com
+]
+
+---
+
+### Researcher workflow
+
+As data gathering from online sources for analysis has become more and more interesting for academic researchers, in practical terms the **typical workflow** for a researcher involves:  
+
+--
+
+* Getting the data
+* Cleaning the data
+* Analysing the data
+* Visualising the data.
+
+---
+
+### Overview
+
+The focus for this tutorial is the first stage of this process - **Getting the data**.  
+
+--
+
+&lt;br&gt;
+There are many ways to obtain data from the Internet. In the simplest cases the data already exists in a tabular format (such as an **Excel or CSV**) and is available to click-and-download.  
+
+--
+
+&lt;br&gt;
+Specifically, we’ll look at the conceptual basics of data collection through using ** APIs** (otherwise known as Application Programming Interface).
+
+---
+
+### Aim of this tutorial
+
+* Understand **what APIs are and how they work**.
+* Understand the **use and limitations of APIs for data collection**.
+* Learn some **basic methods to query APIs** to obtain data.
+
+---
+class: center, middle
+
+# Textual analysis is a broad term for various research methods used to describe, interpret and understand texts.
+
+---
+
+### Text mining as a research method
+
+For researchers interested in internet-based methods, terms such as **Web scraping** and **Data Mining** are often used interchangeably to describe techniques to collect and organise **textual data** for analysis.   
+
+--
+
+&lt;br&gt;
+For our purpose we can distinguish that:
+
+* **Web scraping** refers to the process of automatically extracting textual data from web pages and other digital files (Ignatow &amp; Mihalcea, 2018).  
+* **APIs** provide data in a digital format that computers can understand and use (often referred to as *machine-readable* data). (Sherratt, 2019).  
+
+---
+class: center, middle
+
+# So what is an API?
+
+---
+
+### Software with no API
+
+![](img/ts_black_box.png)
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/10
+]
+
+???
+
+This is a single copmputer. It has a job to do, and it does it well. It does it so well, that we want to connect it up to another application to build a workflow.
+
+---
+
+### The glue between different systems
+
+![](img/ts_many_boxes.png)
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/15 
+]
+
+???
+
+APIs are often described as the glue that sticks different computer systems together (Janetzko, 2016).
+
+Instead of building large monolithic programs, we can create complex applications by hooking together smaller, specialised programs. 
+
+---
+
+### Build new tools &amp; services
+
+![](img/cal-tophike-framed_1920.png)
+
+.footnote[
+Source: https://developers.google.com/calendar
+]
+
+---
+
+### Build new tools &amp; services
+
+![](img/spotify.png)
+
+.footnote[
+Source: https://blog.prototypr.io/have-you-heard-about-the-spotify-web-api-8e8d1dac9eaf
+]
+
+---
+### Build new tools &amp; services  
+
+![](img/ts_white_aus.jpg)
+
+.footnote[
+Source: http://invisibleaustralians.org/faces/ 
+]
+
+???
+
+The White Australia Policy was about people – people whose lives were monitored and restricted because of the colour of their skin. 
+
+The records are held by the National Archives of Australia.
+
+---
+class: center, middle
+
+# So how do they work?
+
+---
+
+### APIs use the underlying protocols of the web
+
+![](img/http-request.png)  
+.footnote[
+Source: https://buildinformi.blogspot.com/2015/09/mobile-web-server-how-to-build-web.html 
+]
+
+???
+
+Request and Response. You make *queries* and you get back *results*.
+
+---
+
+### Send a requests to the API
+
+![](img/ts_2_boxes.png) 
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/13/0/3
+]
+
+???
+
+But instead of sending back a nicely formatted web page, they deliver data in a form that computers can understand. 
+
+---
+
+### Instructions in the URL
+
+![](img/ts_url.png) 
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/18 
+]
+
+???
+
+While humans can easily interpret information on a web page, computers need more help. 
+
+---
+
+### Get back a Response
+
+![](img/ts_api_return.png) 
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/19
+]
+
+???
+
+The results are sent back as data in a standard format like XML or JSON.
+
+---
+
+### In summary  
+
+&lt;br&gt;
+.instructions[
+**Web sites are for humans** -&gt; listen for urls and deliver nicely formatted web pages that humans can read..
+]
+
+&lt;br&gt; 
+.instructions[
+**Web APIs are for machines** -&gt; listen for urls and deliver nicely *structured (or machine-readable) data*. (Sherratt, 2019). 
+]
+
+---
+class: center, middle
+
+# Some issues to consider when using APIs in research
+
+---
+
+### Web scraping v APIs
+
+When using textual data extracted through web scraping or APIs there's some things to consider. In both cases the data provider can set restrictions on how their content can be accessed and used.
+
+--
+
+&lt;br&gt;
+**Web scraping** tend to be more flexible as it can be used on most web pages.  The flip side is that tools to scrape data from pages are often more difficult to use and may violate a platform’s **terms of service** (Freelon, 2018).  
+
+---
+
+### Web scraping v APIs
+
+&lt;br&gt; &lt;br&gt;
+.instructions[
+Websites can have a crawling policy that states which parts of their site can be crawled. The most commonly used one is robots.txt, which is a file that is placed at the root of the website (e.g., http://www.cnn.com/robots.txt) (Ignatow &amp; Rada, 2017).
+]
+
+---
+
+### Terms of Service (TOS)  
+
+Most social media companies like **Facebook, Twitter and LinkedIn** require users to agree to a **terms of service agreement** before registering an account.  
+
+--
+
+&lt;br&gt;
+Generally this grants them permission to use the content you post on their site, and indemnifies them against any libelous or defamatory materials posted onto their platform.  
+
+--
+
+&lt;br&gt;
+These terms also include strict requirements for using their API services. APIs define the structure of the data that can be extracted and 
+have policies for what you can and can’t do with the data you collect (Ignatow &amp; Rada, 2017).
+
+---
+
+### Access &amp; Rate limits 
+
+Not all APIs work the same way and the use of data is strictly regulated by policies of the API provider (Janetzko, 2016). In April 2015 **Facebook** closed its public search API. Since then privacy concerns and the monetisation of data access has meant 'public' or 'open' APIs have disappeared or imposed greater restrictions, or commercial barriers.  
+
+
+--
+
+&lt;br&gt; 
+APIs place certain limitations on how many requests you can make per minute, hour or day. The standard (free) **Twitter API** only allows you to collect tweets going over the past 10 days, and doesn’t provide mechanisms to work with historical tweets.
+
+---
+
+###  Privacy / Research ethics
+
+It's worth remembering **ethical issues are a major consideration in any form of online research**. By employing TOS-compliant methods, you are respecting the business prerogatives of the company that created the platform you are studying but not necessarily the dignity and privacy of the platform’s users (Freelon, 2018). 
+
+--
+
+&lt;br&gt;
+.instructions[
+**Twitter** allow scholars to harvest enormous data sets, it is important for us to consider the human effects of working with and representing people's statements out of context, particularly when the public nature of Twitter that makes the data available also makes individual tweets searchable and traceable (Stewart, 2018).
+]
+
+???
+
+One of the most important purposes of **research ethics** is to protect research participants.
+
+Do not confuse TOS compliance with human subjects compliance or privacy protection. The question of whether public tweets are by default public data is an ethical issue that is contested.
+
+---
+class: center, middle
+
+# APIs for data collection
+
+---
+
+### Getting started  
+
+Collecting data through an APIs is only possible if the data collection programs are authorized to do so. There are a series of steps before you can start collecting data:
+
+--
+
+* To begin you need to register a developer account with the provider you intend to use.
+* You then need to register the ‘apps’ you plan to create.
+* You then need to save the *access token* and *access key* that have been generated for your app.
+
+--
+
+.instructions[
+**Keys &amp; Tokens** are long strings of numbers and letters you need to query and receive data back from the API.
+]
+
+---
+
+### Using the Twitter API 
+
+.midi[
+.left-column[
+![](img/twitter.jpg)
+]
+.right-column[
+* Apply for a **developer account**  (https://developer.twitter.com/en/apply-for-access) &lt;br&gt;
+* Register your new app and save a copy of the **Keys and Tokens** (these will go into our R script)
+]
+]
+
+&lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; &lt;br&gt; 
+
+.question[
+**R** is one of the most popular *free* tools used for data-analytics as it contains a number of libraries for text-mining, data cleaning and manipulation and visualisations.
+]
+
+---
+
+### /rtweet
+
+We're using the R package **rtweet** (https://rtweet.info):
+
+```r
+# Install the packages we'll be using -------------------------------------
+install.packages(c("tidyverse","tidytext","rtweet"), dep = TRUE)
+
+library(tidyverse) 
+library(tidytext)
+library(rtweet)
+```
+
+Next we include the name of our app and the four access keys and tokens:
+
+```r
+# Set the token to authenticate our app -----------------------------------
+token &lt;- create_token(
+  app = "YOUR APP NAME",
+  consumer_key = "YOUR API_KEY",
+  consumer_secret = "YOUR API_SECRET_KEY",
+  access_token = "YOUR ACCESS_TOKEN",
+  access_secret = "YOUR ACCESS_TOKEN_SECRET",)
+```
+
+---
+
+### /rtweet
+
+
+```r
+# Set-up the query for our tweets -----------------------------------------
+tweets &lt;- search_tweets(q = "#cats",             # our query term (q)
+                        n = 18000,               # max number of tweets
+                        include_rts = FALSE,     # don't include retweets
+                        `-filter` = "replies",   # don't include replies
+                        lang = "en")             # tweets in English
+```
+
+---
+
+### /rtweet
+
+
+```r
+# Check what's come back --------------------------------------------------
+tweets %&gt;%
+  sample_n(5) %&gt;%
+  select(created_at, screen_name, text, 
+                     favorite_count, retweet_count)
+```
+
+![](img/tweets.png)
+
+
+```r
+# Save the results to a file ----------------------------------------------
+write_as_csv(tweets, "cats-tweets-June2020.csv")
+```
+
+---
+
+### A more complex query
+
+.midi[
+.left-column[
+![](img/TROVE.jpg)
+]
+.right-column[
+For the Twitter example we just ran a query for tweets that contained a single work ('cats’). Of course we can specify several parameters into our queries to help narrow and focus our search. 
+
+Let’s look at The National Library of Australia's **Trove API** operates in order to build a more detailed set of criteria to focus our search request.
+]
+]
+
+---
+
+### Trove
+
+**Trove** is organised around multiple Zones. These zones include `book, picture, article, music, map, collection, newspaper, gazette, list, all`.
+
+--
+
+&lt;br&gt;
+So a simple search request looks something like:
+
+
+```r
+https://api.trove.nla.gov.au/v2/result?key=&lt;INSERT KEY&gt;
+                                      &amp;zone=&lt;ZONE NAME&gt;
+                                      &amp;q=&lt;YOUR SEARCH TERM&gt;
+```
+
+---
+
+### Trove
+
+We can narrow this down further by including **Facets** which are categories that restrict our interest to a specified area. 
+
+The Facets include `place, format, decade, year, month, language, title, category`.
+
+--
+
+&lt;br&gt;
+Here's how to limit the search to Theses (using the format facet): 
+
+
+```r
+https:// api.trove.nla.gov.au/v2/result?key=INSERT_KEY
+                                        &amp;zone=book
+                                        &amp;q=INSERT_SEARCH_TERMS
+                                        &amp;l-format=Thesis
+```
+
+---
+
+### How about a test run?
+
+Here's a workflow to try using the TROVE API:
+
+--
+
+&lt;br&gt;
+.instructions[
+* Get a TROVE API key (https://help.nla.gov.au/trove/building-with-trove/api).  
+* Construct a simple, two term search query on the newspapers collection and limit the search to a specific number of records.  
+* Use the site ‘JSON to CSV Converter’ (https://json-csv.com) to save the results to file.  
+* Download the resulting CSV file.  
+]
+
+---
+
+### More Trove..
+
+https://help.nla.gov.au/trove/trove-api-workshop
+
+https://help.nla.gov.au/trove/building-with-trove/api-version-2-technical-guide 
+
+![](img/Trove_RoomToGrow.jpg)
+
+---
+
+class: center, middle
+
+# Where to next?
+
+---
+
+### Hook APIs together to create your own custom services
+
+![](img/ts_api_services.png)
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/24 
+]
+
+---
+
+### Test an API Console
+
+![](img/the-guardian-explore.png) 
+
+.footnote[
+Source: https://open-platform.theguardian.com/explore/ 
+]
+
+???
+
+TROVE and The Guardian provide methods to explore their APIs.
+
+---
+
+### Tim Sherratt’s GLAM Workbench  
+
+![](img/ts_glam_wb.png) 
+
+.footnote[
+Source: https://slides.com/wragge/introducing-apis-vala#/28
+]
+
+---
+
+### Tools for Web crawling
+
+Web crawling can be effectively performed using any of these tools:
+
+* scrapy (http://scrapy.org) a collection of Python scripts
+* rvest (https://github.com/tidyverse/rvest) a collection of R scripts
+
+--
+
+Other software:
+
+* Helium Scraper (http://www.heliumscraper.com)
+* Outwit (http://www.outwit.com)
+* Outwit Hub (https://www.outwit.com/products/hub)
+
+---
+
+### References
+
+* About Trove. The National Library of Australia. Retrieved from https://help.nla.gov.au/trove/using-trove/getting-to-know-us 
+* API version 2 technical guide (TROVE). The National Library of Australia. Retrieved from https://help.nla.gov.au/trove/building-with-trove/api-version-2-technical-guide 
+* Hegelich, Simon. (2018). R for Social Media Analysis. The SAGE Handbook of Social Media Research Methods. DOI: http://dx.doi.org/10.4135/9781473983847 
+* Janetzko, Dietmar. (2018) The Role of APIs in Data Sampling from Social Media. The SAGE Handbook of Social Media Research Methods. DOI: http://dx.doi.org/10.4135/9781473983847 
+* Practice getting data from the Twitter API. Retrieved from https://cfss.uchicago.edu/notes/twitter-api-practice/ 
+---
+
+# References
+
+* Sherratt, Tim. (2019). Introducing APIs. Zenodo. http://doi.org/10.5281/zenodo.3545007
+* Sherratt, Tim. (2019). GLAM-Workbench/trove-api-intro (Version v0.1.0). Zenodo. http://doi.org/10.5281/zenodo.3549551 
+* Stewart, Bonnie. (2018). Twitter as Method: Using Twitter as a Tool to Conduct Research. The SAGE Handbook of Social Media Research Methods. DOI: http://dx.doi.org/10.4135/9781473983847
+* Ignatow, Gabe &amp; Mihalcea, Rada. (2017). Text Mining: A Guidebook for the Social Sciences. DOI: https://dx.doi.org/10.4135/9781483399782 
+* Wasser, Leah. (2018). Earth Analytics Course in the R Programming Language (Version r-earth-analytics). Zenodo. http://doi.org/10.5281/zenodo.1326873
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

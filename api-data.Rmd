@@ -16,10 +16,7 @@ output:
 ## Scope
 The source of data were Twitter APIs
 
-[More about restricted uses of the Twitter APIs](https://developer.twitter.com/en/developer-terms/more-on-restricted-use-casesl)
-
-
-
+[More about restricted uses of the Twitter APIs](https://developer.twitter.com/en/developer-terms/more-on-restricted-use-cases)
 
 
 
@@ -63,7 +60,7 @@ posts<-as.data.frame(posts)
 library(XML)
 
 trove_base_url = "http://api.trove.nla.gov.au/v2/result?key="
-api_key = "3fa0o2759s1qasoi"
+api_key = "TROVE_KEY"
 zone = "&zone="
 query = "&q="
 type = "&encoding=json"

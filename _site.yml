@@ -5,7 +5,7 @@ navbar:
   title: edu-disruption
   type: inverse
   right:
-    - text: "Home"
+    - icon: fa-home fa-lg
       href: index.html
     - text: "More"
       icon: fa-gear
@@ -16,7 +16,7 @@ navbar:
         - text: "Page B"
           href: page_b.html
         - text: "---------"
-        - text: "Heading 2"
+        - text: "Support docs"
         - text: "Packages"
           href: packages.html
         - text: "Glossary"
