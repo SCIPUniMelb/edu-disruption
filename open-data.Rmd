@@ -6,31 +6,29 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 ```{r child = "setup.Rmd"}
 ```
 
-<br>
+<br />
 
 ## Data sources
 
+### Twitter
 
-https://developer.twitter.com/en/use-cases/academic-researchers/products-for-researchers
+[Products for researchers](https://developer.twitter.com/en/use-cases/academic-researchers/products-for-researchers)
 
-https://developer.twitter.com/en/docs/tweets/search/guides/premium-operators  
-
-https://developers.facebook.com/ads/blog/post/2018/05/15/facebook-reach-frequency-api/  
-
-https://developers.facebook.com/docs/pages/ 
+<br />
 
 
+### Facebook
+
+[Requirements for Facebook Graph API ](https://developers.facebook.com/docs/pages/overview)
+
+<br />
 
 
-https://www.tidytextmining.com/ngrams.html 
+## Data sources (COVID related)
 
-https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html
+*A large-scale COVID-19 Twitter chatter dataset for open scientific research.* [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884334.svg)](https://doi.org/10.5281/zenodo.3884334)
 
-https://rafalab.github.io/dsbook/text-mining.html#sentiment-analysis
-
-
-
-
+[Postman COVID-19 API Resource Center](https://covid-19-apis.postman.com/) Accessed 8 July 2020.
 
 
 

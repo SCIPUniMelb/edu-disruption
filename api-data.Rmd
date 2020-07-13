@@ -8,15 +8,34 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 <br>
 
-## Scope
+## Aim 
+Evaluate the use of APIs (Application Programming Interface) as a method of data collection. 
 
-* [Twitter API](twitter.html)
-* [Google Blogger API](google-blogger.html)
+<br>
 
+## Scope {.tabset}
 
-[More about restricted uses of the Twitter APIs](https://developer.twitter.com/en/developer-terms/more-on-restricted-use-cases)
+### APIs for data collection
+While humans can easily interpret information the displayed on a web page, computers need more help. **APIs** provide a way to share data in a digital format that computers can understand across the internet (often referred to as *machine-readable* data). 
 
+Not all APIs work the same way and the use of data is strictly regulated by policies of the API provider. The results are sent back as data in a standard data format like XML or JSON.  
 
+![*Source: Australian Institute of Health and Welfare API. https://www.aihw.gov.au/reports-data/myhospitals/content/api* ](https://www.aihw.gov.au/getmedia/1084c218-b132-491f-80c6-efc3ca87e0bd/API-diagram.png.aspx?width=885&height=543)
+
+### What is an API? (video)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+
+## APIs used in this resource
+
+The following APIs have been tested for respective research questions.
+
+* [Twitter API](twitter.html)  
+
+* [Google Blogger API](google-blogger.html)  
+
+* [Misc COVID API collections](https://covid-19-apis.postman.com/)  
 
 
 

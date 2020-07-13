@@ -33,7 +33,7 @@ The terms *Textual analysis* and *Text mining* generally refer to the use of com
 
 <br>
 
-## Methods used in this resoruces
+## Methods used in this resource
 
 Broadly speaking the workflow for text mining includes the following steps:
 
