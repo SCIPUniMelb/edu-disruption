@@ -43,7 +43,8 @@ I began by looking at the following blogging platforms that are popular with tea
 This section steps through the process of identifying suitable blogs for scraping, through to scraping the blog using the R package `rvest`.
 
 ### Methods for data collection
-Common approaches to text mining include:
+Common approaches to text mining include:  
+
 1. *Web scraping* refers to the process of automatically extracting textual data from web pages and other digital files (Ignatow & Mihalcea, 2018).  
 2. *APIs* provide data in a digital format that computers can understand and use (often referred to as *machine-readable* data). (Sherratt, 2019).  
 
