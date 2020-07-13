@@ -1,53 +1,52 @@
 ---
-title: 'edu-disruption'
+title: '`edu-disruption`'
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 3
-    toc_float: 
-      collapsed: false
 ---
 
 ```{r child = "setup.Rmd"}
 ```
 
-This resource is a work in progress and has been created 
+<br>
 
-
-
-have been created to use publicly available data on the internet in order to explore specific questions on the impact of the COVID-19 pandemic on teaching practices.
+## Purpose 
+This resource is a **work in progress** and is being developed following iterative design principles. It's purpose is to support research interest in the use of publicly available data on the internet to investigate the impact the coronavirus (COVID-19) pandemic has had on teaching practices.
 
 <br>
 
 ## Broad research question(s)
-*"..what educators have learned from teaching during the pandemic, how their practices have been disrupted, what kind of innovations have resulted from this and how these are evolving."*
+*"..what educators have learned from teaching during the pandemic, how their practices have been disrupted, what kind of innovations have resulted from this and how these are evolving?"*
 
 <br>
 
-## Broad methodology
+## Scope  {.tabset}
+This resource uses various R programming packages to conduct data collection and carry out some preliminary analysis. 
 
-This resource draws on a number of R programming packages and approaches. The broad approach incldues the following stages:
+### Working with textual data
+The terms *Textual analysis* and *Text mining* generally refer to the use of computational methods to search, retrieve, and analyse text data.
+
+**Textual analysis** is a broad term for various research methods used to describe, interpret and understand texts.
+
+**Text mining** seeks to extract useful and important information from heterogeneous document formats through identifying patterns within texts, such as trends in words usage, syntactic structure, etc.
+
+### Text mining (video)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xxqrIZyKKuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+
+## Methods used in this resoruces
+
+Broadly speaking the workflow for text mining includes the following steps:
 
 1. Collect public data 
 2. Clean and prepare the text data
-3. Carry out analysis
+3. Carry out analysis  
 
-<br>
+The following digital methods are being tested:  
 
-### Data collection
+* [Data collection using web scraping](scraping-data.html)
+* [Data collection using APIs](api-data.html)
+* [Other sources of public data](open-data.html)
 
-* [data through web scraping](scraping-data.html)
-* [data through use of api](api-data.html)
-* [existing open data](open-data.html)
+<br> 
 
-<br>
-
-### Resources
-
-* [Definitions](defs.html) - Definitions of ....
-* [support files](support_files.html) - Definitions of ....
-
-<br> <br>
 

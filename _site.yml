@@ -10,13 +10,15 @@ navbar:
     - text: "More"
       icon: fa-gear
       menu:
-        - text: "Collect data"
-        - text: "APIs"
-          href: api-data.html
+        - text: "Data collection"
         - text: "Web scraping"
-          href: scraping-data.html
-        - text: "Data sources"
-          href: sources-data.html          
+          href: scraping-data.html        
+        - text: Twitter API
+          href: twitter.html
+        - text: Google Blogger API
+          href: google-blogger.html       
+        - text: "Other data sources"
+          href: open-data.html          
         - text: "---------"          
         - text: "Support docs"          
         - text: "API slides"
@@ -34,11 +36,16 @@ navbar:
 output:
   html_document:
     theme: cerulean
-    css: mystyle.css
+    highlight: tango
+    css: "imgs/mystyle.css"
     lib_dir: site_libs
+    df_print: paged
+    # code_folding: hide
     self_contained: no
+    toc: yes
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
     fig_caption: yes
     includes:
       after_body: footer.html
-
-

@@ -1,4 +1,4 @@
 ```{r setup, include = FALSE, cache = FALSE}
-knitr::opts_chunk$set(error = TRUE, collapse = TRUE, comment = "#>")
+knitr::opts_knit$set(progress = TRUE, verbose = TRUE, error = FALSE, collapse = FALSE, comment = "#>")
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```

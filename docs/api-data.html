@@ -11,7 +11,7 @@
 
 
 
-<title>api for data</title>
+<title>Data collection using APIs</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,26 +23,12 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -73,7 +59,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="mystyle.css" type="text/css" />
+<link rel="stylesheet" href="imgs/mystyle.css" type="text/css" />
 
 
 
@@ -374,15 +360,18 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Collect data</li>
-    <li>
-      <a href="api-data.html">APIs</a>
-    </li>
+    <li class="dropdown-header">Data collection</li>
     <li>
       <a href="scraping-data.html">Web scraping</a>
     </li>
     <li>
-      <a href="sources-data.html">Data sources</a>
+      <a href="twitter.html">Twitter API</a>
+    </li>
+    <li>
+      <a href="google-blogger.html">Google Blogger API</a>
+    </li>
+    <li>
+      <a href="open-data.html">Other data sources</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Support docs</li>
@@ -420,106 +409,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">api for data</h1>
-<h4 class="date">07 July, 2020</h4>
+<h1 class="title toc-ignore">Data collection using APIs</h1>
+<h4 class="date">13 July, 2020</h4>
 
 </div>
 
 
+<p><br></p>
 <div id="scope" class="section level2">
 <h2>Scope</h2>
-<p>The source of data were Twitter APIs</p>
+<ul>
+<li><a href="twitter.html">Twitter API</a></li>
+<li><a href="google-blogger.html">Google Blogger API</a></li>
+</ul>
 <p><a href="https://developer.twitter.com/en/developer-terms/more-on-restricted-use-cases">More about restricted uses of the Twitter APIs</a></p>
-<pre class="r"><code>
-install.packages(&quot;httr&quot;)
-#&gt; Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror
-
-# libraries needed
-library(tidyverse)
-library(httr)
-library(jsonlite)
-
-set.seed(8675309) # makes sure random numbers are reproducible</code></pre>
-<pre class="r"><code>
-mv_base_url = &quot;https://collections.museumvictoria.com.au/api/search?&quot;
-
-mv_df &lt;-httr::GET(url = mv_base_url, query = list(q = &quot;food+war&quot;)) %&gt;% 
-        content(as = &quot;text&quot;, encoding = &quot;UTF-8&quot;) %&gt;% 
-        jsonlite::fromJSON(flatten = TRUE) %&gt;% 
-        data.frame()
-
-# check number of columns
-ncol(mv_df)
-#&gt; [1] 233
-
-posts&lt;-fromJSON(&quot;posts.json&quot;)
-#&gt; Error: lexical error: invalid char in json text.
-#&gt;                                        posts.json
-#&gt;                      (right here) ------^
-posts&lt;-as.data.frame(posts)
-#&gt; Error in as.data.frame(posts): object &#39;posts&#39; not found</code></pre>
-<pre class="r"><code>
-library(XML)
-
-trove_base_url = &quot;http://api.trove.nla.gov.au/v2/result?key=&quot;
-api_key = &quot;TROVE_KEY&quot;
-zone = &quot;&amp;zone=&quot;
-query = &quot;&amp;q=&quot;
-type = &quot;&amp;encoding=json&quot;
-
-zone_name=&quot;newspaper&quot;
-question=&quot;army&quot;
-
-url_query = paste0(trove_base_url, api_key, zone, zone_name, query, question,type)
-
-json_file = jsonlite::fromJSON(url_query)
-
-df = as.data.frame(json_file$response$zone$records$article)
-
-
-
-# This package is required for Accessing APIS (HTTP or HTTPS URLS from Web)
-library(httr)
-#This package exposes some additional functions to convert json/text to data frame
-library(rlist)
-#This package exposes some additional functions to convert json/text to data frame
-library(jsonlite)
-#This library is used to manipulate data
-library(dplyr)
-
-
-# using httr
-
-resp &lt;- GET(url_query)
-
-# Shows raw data which is not structured and readable
-jsonRespText&lt;-content(resp, as=&quot;text&quot;) 
-jsonRespText
-
-
-
-mydf &lt;- fromJSON(jsonRespText)      # Convert JSON to data frame using jsonlite package
-mydf
-
-# &gt; View(mydf[[&quot;response&quot;]][[&quot;zone&quot;]][[&quot;records&quot;]][[&quot;article&quot;]][[1]])
-
-
-
-
-trove_base_url = &quot;https:// api.trove.nla.gov.au/v2/result?&quot;
-
-trove_df &lt;-httr::GET(url = trove_base_url, query = list(key=&quot;3fa0o2759s1qasoi&quot;, zone=&quot;book&quot;, q = &quot;society&quot;, l-format=&quot;Thesis&quot;)) %&gt;% 
-        content(as = &quot;text&quot;, encoding = &quot;UTF-8&quot;) %&gt;% 
-        jsonlite::fromJSON(flatten = TRUE) %&gt;% 
-        data.frame()
-
-posts&lt;-fromJSON(&quot;posts.json&quot;)
-posts&lt;-as.data.frame(posts)
-
-#&gt; Error: &lt;text&gt;:51:117: unexpected &#39;=&#39;
-#&gt; 50: 
-#&gt; 51: trove_df &lt;-httr::GET(url = trove_base_url, query = list(key=&quot;3fa0o2759s1qasoi&quot;, zone=&quot;book&quot;, q = &quot;society&quot;, l-format=
-#&gt;                                                                                                                         ^</code></pre>
 </div>
 
 

@@ -23,26 +23,12 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -73,7 +59,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="mystyle.css" type="text/css" />
+<link rel="stylesheet" href="imgs/mystyle.css" type="text/css" />
 
 
 
@@ -374,15 +360,18 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Collect data</li>
-    <li>
-      <a href="api-data.html">APIs</a>
-    </li>
+    <li class="dropdown-header">Data collection</li>
     <li>
       <a href="scraping-data.html">Web scraping</a>
     </li>
     <li>
-      <a href="sources-data.html">Data sources</a>
+      <a href="twitter.html">Twitter API</a>
+    </li>
+    <li>
+      <a href="google-blogger.html">Google Blogger API</a>
+    </li>
+    <li>
+      <a href="open-data.html">Other data sources</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Support docs</li>
@@ -420,46 +409,54 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">edu-disruption</h1>
-<h4 class="date">07 July, 2020</h4>
+<h1 class="title toc-ignore"><code>edu-disruption</code></h1>
+<h4 class="date">13 July, 2020</h4>
 
 </div>
 
 
-<p>This resource is a work in progress and has been created</p>
-<p>have been created to use publicly available data on the internet in order to explore specific questions on the impact of the COVID-19 pandemic on teaching practices.</p>
 <p><br></p>
+<div id="purpose" class="section level2">
+<h2>Purpose</h2>
+<p>This resource is a <strong>work in progress</strong> and is being developed following iterative design principles. It’s purpose is to support research interest in the use of publicly available data on the internet to investigate the impact the coronavirus (COVID-19) pandemic has had on teaching practices.</p>
+<p><br></p>
+</div>
 <div id="broad-research-questions" class="section level2">
 <h2>Broad research question(s)</h2>
-<p><em>“..what educators have learned from teaching during the pandemic, how their practices have been disrupted, what kind of innovations have resulted from this and how these are evolving.”</em></p>
+<p><em>“..what educators have learned from teaching during the pandemic, how their practices have been disrupted, what kind of innovations have resulted from this and how these are evolving?”</em></p>
 <p><br></p>
 </div>
-<div id="broad-methodology" class="section level2">
-<h2>Broad methodology</h2>
-<p>This resource draws on a number of R programming packages and approaches. The broad approach incldues the following stages:</p>
+<div id="scope" class="section level2 tabset">
+<h2>Scope</h2>
+<p>This resource uses various R programming packages to conduct data collection and carry out some preliminary analysis.</p>
+<div id="working-with-textual-data" class="section level3">
+<h3>Working with textual data</h3>
+<p>The terms <em>Textual analysis</em> and <em>Text mining</em> generally refer to the use of computational methods to search, retrieve, and analyse text data.</p>
+<p><strong>Textual analysis</strong> is a broad term for various research methods used to describe, interpret and understand texts.</p>
+<p><strong>Text mining</strong> seeks to extract useful and important information from heterogeneous document formats through identifying patterns within texts, such as trends in words usage, syntactic structure, etc.</p>
+</div>
+<div id="text-mining-video" class="section level3">
+<h3>Text mining (video)</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xxqrIZyKKuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p><br></p>
+</div>
+</div>
+<div id="methods-used-in-this-resoruces" class="section level2">
+<h2>Methods used in this resoruces</h2>
+<p>Broadly speaking the workflow for text mining includes the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Collect public data</li>
 <li>Clean and prepare the text data</li>
 <li>Carry out analysis</li>
 </ol>
-<p><br></p>
-<div id="data-collection" class="section level3">
-<h3>Data collection</h3>
+<p>The following digital methods are being tested:</p>
 <ul>
-<li><a href="scraping-data.html">data through web scraping</a></li>
-<li><a href="api-data.html">data through use of api</a></li>
-<li><a href="open-data.html">existing open data</a></li>
+<li><a href="scraping-data.html">Data collection using web scraping</a></li>
+<li><a href="api-data.html">Data collection using APIs</a></li>
+<li><a href="open-data.html">Other sources of public data</a></li>
 </ul>
 <p><br></p>
-</div>
-<div id="resources" class="section level3">
-<h3>Resources</h3>
-<ul>
-<li><a href="defs.html">Definitions</a> - Definitions of ….</li>
-<li><a href="support_files.html">support files</a> - Definitions of ….</li>
-</ul>
-<p><br> <br></p>
-</div>
 </div>
 
 

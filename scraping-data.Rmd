@@ -1,139 +1,208 @@
 ---
-title: "data through web scraping"
+title: "Web scraping"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 3
-    toc_float: 
-      collapsed: false
 ---
 
 ```{r child = "setup.Rmd"}
+
 ```
 
-## Scope
-The source of data were blogs 
+<br>
 
-### Blogs
+## Aim 
+Use data scraping as a method of data collection from educational bloggers to examine the sentiments associated with the transition from classroom based schooling to remote schooling as a result of the coronavirus (COVID-19) pandemic.
 
-1. https://edublogs.org 
-2. https://www.blogger.com
+&nbsp;  
 
-[https://edublogs.org/robots.txt](https://edublogs.org/robots.txt)
+## Scope {.tabset}
+Before any data scraping can commence it's necessary to identify blogs of interest. This particular exploration only deals with the output of a single blogger, however future work might look at incorporating more blog entries and/or new blogs so as to build a larger dataset. For ethical considerations it is necessary to refer to the data collection plicies of the respective blogging platform (refer to https://scipunimelb.github.io/edu-disruption/slides/rc-apis.html#31).
 
-[https://developers.google.com/blogger](https://developers.google.com/blogger)
+### Requirements for data collection
+1. Confirm keywords (search terms) of interest
+2. Identify blog(s) of interest
+3. Review Terms of Service for use of data
+4. Identify suitable method for data collection
 
+### Sample edu-bloggers
+* [Blog one example](https://visualisingideas.edublogs.org/2020/03/29/visualising-a-discussion-prompt-for-students-on-studying-habits-at-home) 
+* [Blog two example](https://mrsdkrebs.edublogs.org/2020/07/01/insights-from-remote-learning/)
 
-1.	Go to Google.com.
-2.	Enter site:www.website.com and 'Search Term' into the search box.
-3.	Refine your search.
+### Use of data (Privacy & Ethics)
+I began by looking at the following blogging platforms that are popular with teachers: *edublogs.org*, *blogger.com* and *edutopia.org*. Two platforms grant permission for data from their websites to be used and one does not.
 
+| Website   	| Allow data to be used    	|  Mechanism 	|  Details 	|
+|-------------	|------------- |	-------------	| -------------	|
+| edublogs.org 	| Yes	| Scraping 	| [https://edublogs.org/robots.txt](https://edublogs.org/robots.txt) |
+| blogger.com 	| Yes  	|   API 	| [https://developers.google.com/blogger](https://developers.google.com/blogger)  |
+| edutopia.org 	| No 	|    - 	| [https://developers.google.com/blogger](https://www.edutopia.org/terms-of-use) |    
 
-
-Find Blogs on Blogger through Google web search. To find a blogger on Google you have to make the following queries in to the Google.
-
-`site:blogger.com Search_Term`  
-OR  
-`site:blogspot.com Search_Term`  
-OR
-`site:edutopia.org covid virtual pedagogy` 
-
-
-
-[site:blogger.com distance education](https://www.google.com/search?client=firefox-b-d&q=site%3Ablogger.com+distance+education)  
-OR
-[site:edublogs.org covid pedagogy](https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy)
-
-`site:edutopia.org covid virtual pedagogy` 
-https://www.edutopia.org/terms-of-use
+&nbsp;  
 
 
+## Method {.tabset}
+This section steps through the process of identifying suitable blogs for scraping, through to scraping the blog using the R package `rvest`.
 
+### Methods for data collection
+Common approaches to text mining include:
+1. *Web scraping* refers to the process of automatically extracting textual data from web pages and other digital files (Ignatow & Mihalcea, 2018).  
+2. *APIs* provide data in a digital format that computers can understand and use (often referred to as *machine-readable* data). (Sherratt, 2019).  
 
+### Identify blogs of interest
+You can find education blogs by using the following search terms in Google:
 
-https://visualisingideas.edublogs.org/2020/03/
-https://scis.edublogs.org/tag/remote-learning/
+* `site:www.website.com` and `Search Term` 
+* for example [site:edublogs.org covid pedagogy](https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy)  
 
-https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/
-https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/ 
-https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/
+The search results will include both blogs created by teachers and blogs created by education providers (EG: [Google for Education](https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/).  
 
+### Scrape text from blog
 
-```{r}
-# https://towardsdatascience.com/tidy-web-scraping-in-r-tutorial-and-resources-ac9f72b4fe47
-
-if (!("rvest" %in% installed.packages())) {
- install.packages("rvest")
-}
-
-if (!("dplyr" %in% installed.packages())) {
- install.packages("dplyr")
-}
-
+```{r libraries, include=FALSE}
+library(tidyverse)
 library(rvest)
-library(dplyr)
+
+# function to remove html tags
+cleanFun = function(htmlString) {
+  return(gsub("<.*?>", "", htmlString))
+}
 ```
 
+The website used in this instance was [https://visualisingideas.edublogs.org/2020/03/](https://visualisingideas.edublogs.org/2020/03/).
 
+The first step is to gather the HTML page from the blog.
 
 ```{r}
-hot100page <- "https://www.billboard.com/charts/hot-100"
-hot100 <- read_html(hot100page)
+# set-up url for scraping
+march20_archive = "https://visualisingideas.edublogs.org/2020/03/"
 
-hot100
-str(hot100)
+# Read the HTML code from the website
+march_posts <- read_html(march20_archive)
 ```
+
+A web page contains a lot of content and we may not need everything. Web scraping is performed in such a way to target the pieces of content we are most interested in.
 
 ```{r}
-#  list of nodes inside the body of the page.
-body_nodes <- hot100 %>% 
- html_node("body") %>% 
- html_children()
-
-body_nodes
+march_titles <- html_nodes(march_posts,'.entry-title')   #’.entry-title’ is the blog Title
+march_paras <- html_nodes(march_posts,'p')   #’p’ are the paragraphs
 ```
 
-```{r}
-rank <- hot100 %>% 
-  rvest::html_nodes('body') %>% 
-  xml2::xml_find_all("//span[contains(@class, 'chart-element__rank__number')]") %>% 
-  rvest::html_text()
+How many titles do we have (*NB:* this url is an archive of the blog posts that were written in March 2020).
 
-artist <- hot100 %>% 
-  rvest::html_nodes('body') %>% 
-  xml2::xml_find_all("//span[contains(@class, 'chart-element__information__artist')]") %>% 
-  rvest::html_text()
+```{r echo=FALSE}
 
-title <- hot100 %>% 
-  rvest::html_nodes('body') %>% 
-  xml2::xml_find_all("//span[contains(@class, 'chart-element__information__song')]") %>% 
-  rvest::html_text()
-
-chart_df <- data.frame(rank, artist, title)
-
-knitr::kable(
-  chart_df  %>% head(10))
+# Convert the data to text and do some additional cleaning up.
+march_titles %>%
+  html_text() %>%
+  # remove empty white space
+  str_trim() %>%
+  # remove new line indicator \n
+  str_remove_all(pattern = "\n")
 
 ```
 
 
+```{r echo=FALSE}
+
+# Clean up the text from each blog post.
+p <- march_paras %>%
+  # remove empty white space  
+  html_text() %>%
+  # remove empty white space
+  str_trim() %>%
+  # remove new line indicator \n
+  str_remove_all(pattern = "\n") %>%
+  # remove html tags
+  cleanFun() %>% 
+  as_tibble() 
+
+```
+
+&nbsp;  
 
 
+## Text as data  {.tabset}
+
+Examine the results of the new dataset and carry out some preliminary sentiment analysis.
+
+###  What are the most commonly used words?
+
+Generally most text analysis algorithms involve detecting patterns, such as identifying *word frequency* relatively unique to a particular dataset. The simplest word frequency analysis is assessing the most common words in text. We can remove all the `stop words` that are not informative (ie: *the, and, to, of, a, ...*).
 
 
+```{r echo=FALSE}
+
+library(tidytext)
+
+pp <- p %>% 
+  unnest_tokens(word, value) %>%
+  filter(!word %in% stop_words$word ) %>%
+  count(word, sort = TRUE) %>%
+  arrange(desc(n))
+pp
+```
 
 
-### Twitter (threads)
+### What are the prevalent sentiments (positive, negative)?
 
-@threadreaderapp 'unroll'
-[Twitter thread vy @YaeganDoran](https://threadreaderapp.com/thread/1272337288249217025.html)
-
+In *sentiment analysis* assigns a word to one or more sentiments. The lexicon used here divides words into positive and negative sentiments. 
 
 
+```{r echo=FALSE}
+
+positive <- get_sentiments("bing") %>%
+  filter(sentiment == "positive")
+
+negative <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+
+# https://dplyr.tidyverse.org/reference/filter-joins.html#examples
+# To suppress the message about joining variables, supply `by`
+# band_members %>% semi_join(band_instruments, by = "name")
+
+# What are the most common positive words
+pos <- pp %>%
+  dplyr::semi_join(positive, by = "word") %>% 
+  select(Positive = word, pos_total = n) %>% 
+  head(20)
+
+# What are the most common negative words
+neg <- pp %>%
+  dplyr::semi_join(negative, by = "word") %>% 
+  select(Negative = word, neg_total = n) %>% 
+  head(20)
+
+(c <-bind_cols(pos, neg))
+
+```
 
 
+&nbsp;  
+
+
+## Next steps {.tabset}
+
+Some options for further developent.
+
+### Larger dataset
+This proof of concept only uses a small dataset consisting of blog entries over a one month period by a single blogger. There is potential to extend this analysis through collecting a larger dataset. A small scale analysis could be done comparing pre-covid and post-covid blog posts.
+
+### Different Lexicon
+The lexicon could be replaced or expanded depending on areas of interest (*EG:* teacher's feelings (sentiments) aboput transitioning to remote learning &/or changes in their pedagogical approaches as they pivot to online teaching).
+
+### Other sources of data
+*Tweets* could provide another source of data to examine text published by an educator through social media.
+
+*Tweet threads* are a string of tweets that are linked together by the author and will relate to a topic in some way. When composing a thread, usually people indicate this by starting it with [Thread] or `1/n` or some other way to highlight it’s a thread. (*source:* https://www.t4rstats.com/how-threads-work.html)
+
+It is possible to combine and display the complete thread by including `@threadreaderapp unroll` as a comment.
+
+See [Dispaly twitter thread](https://threadreaderapp.com/thread/1272337288249217025.html)
+
+<br> 
+
+![](imgs/twitter_thread.png) 
+
+<br> 
 
 
 

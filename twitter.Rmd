@@ -1,0 +1,166 @@
+---
+title: "Twitter"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r libraries, include=FALSE, message=FALSE}
+
+## install packages
+# install.packages(c("tidyverse","tidytext","rtweet"), dep = TRUE)
+
+library(tidyverse) 
+library(tidytext)
+library(rtweet)
+library(DT)
+
+# include API keys
+source("keys.R")
+```
+
+<br>
+
+## Aim 
+Use the Twitter API as a method of data collection to investigate how educators tweeting using education hashtags (EG: #remotelearning) are adapting their online learning designs to support positive socioemotional outcomes for their students. 
+
+&nbsp;  
+
+## Scope {.tabset}
+This evaluation was conducted on Monday 13 July 2020 at the commencement of the second stage of home schooling restrictions.
+
+### Purpose
+Investigate how teachers support students’ socioemotional outcomes in online learning contexts through aspects of their learning design.
+
+### Background
+As a response to the coronavirus (COVID-19) pandemic Victorian schools implemented remote learning during Term 2 (April–June 2020) where most students learnt from home under their school's guidance. 
+
+A surge in reported cases has led to a return to Stage 3 'Stay at Home' restrictions with most students in Victorian schools returning to flexible and remote learning for the start of Term 3 (20 July 2020).
+
+### Keywords (hastags)
+* #remotelearning 
+* #flexiblelearning
+
+
+```{r query, echo=FALSE, message=FALSE}
+
+## search for tweets
+rl_tweets <- search_tweets(q = "#remotelearning", n = 18000, include_rts = FALSE, `-filter` = "replies", lang = "en")
+
+```
+
+## Results {.tabset}
+
+### Sample of tweets with `#remotelearning`
+
+```{r saveresults, echo=FALSE, message=FALSE}
+
+rl_tweets %>%
+  sample_n(5) %>%
+  select(created_at, screen_name, text, favorite_count, retweet_count)
+
+write_as_csv(rl_tweets, "data/tweets-remotelearning.csv")
+
+```
+
+### Timeline of tweets 
+
+```{r tweettimeline, echo=FALSE, message=FALSE}
+
+ts_plot(rl_tweets, "hours") +
+  labs(x = NULL, y = NULL,
+       title = "Frequency of tweets with #remotelearning hashtag",
+       subtitle = paste0(format(min(rl_tweets$created_at), "%d %B %Y"), " to ", format(max(rl_tweets$created_at),"%d %B %Y")),
+       caption = "Data collected from Twitter's REST API via rtweet") +
+  theme_minimal()
+
+```
+
+## Most active users/hashtags {.tabset}
+
+### Top tweeters
+
+```{r toptweeters, echo=FALSE, message=FALSE}
+rl_tweets %>%
+  count(screen_name, sort = TRUE) %>%
+  top_n(10) %>%
+  mutate(screen_name = paste0("@", screen_name))
+```
+
+### Top hashtags
+
+```{r tophashtags, echo=FALSE, message=FALSE}
+rl_tweets %>%
+  unnest_tokens(hashtag, text, "tweets", to_lower = FALSE) %>%
+  filter(str_detect(hashtag, "^#"),
+         hashtag != "#remotelearning") %>%
+  count(hashtag, sort = TRUE) %>%
+  top_n(10)
+```
+
+
+## Most popular tweet  {.tabset}
+
+### Most retweeted tweet
+
+```{r mostretweets, echo=FALSE, message=FALSE}
+rl_tweets %>%
+  arrange(-retweet_count) %>%
+  slice(1) %>%
+  select(created_at, screen_name, text, retweet_count)
+```
+
+### Most liked tweet
+
+```{r mostliked, echo=FALSE, message=FALSE}
+rl_tweets %>%
+  arrange(-favorite_count) %>%
+  top_n(5, favorite_count) %>%
+  select(created_at, screen_name, text, favorite_count)
+```
+
+### Top emoji
+
+```{r emoji, include=FALSE, message=FALSE}
+# install.packages("devtools")
+# devtools::install_github("hadley/emo")
+library(emo)
+```
+
+```{r showemoji, echo=FALSE, message=FALSE}
+rl_tweets %>%
+  mutate(emoji = ji_extract_all(text)) %>%
+  unnest(cols = c(emoji)) %>%
+  count(emoji, sort = TRUE) %>%
+  top_n(10)
+```
+
+
+## Word cloud of word frequencies
+
+```{r words, include=FALSE, message=FALSE}
+words <- rl_tweets %>%
+  mutate(text = str_remove_all(text, "&amp;|&lt;|&gt;"),
+         text = str_remove_all(text, "\\s?(f|ht)(tp)(s?)(://)([^\\.]*)[\\.|/](\\S*)"),
+         text = str_remove_all(text, "[^\x01-\x7F]")) %>%
+  unnest_tokens(word, text, token = "tweets") %>%
+  filter(!word %in% stop_words$word,
+         !word %in% str_remove_all(stop_words$word, "'"),
+         str_detect(word, "[a-z]"),
+         !str_detect(word, "^#"),         
+         !str_detect(word, "@\\S+")) %>%
+  count(word, sort = TRUE)
+```
+
+
+```{r wordcloud, echo=FALSE, message=FALSE}
+
+# Then we use the wordcloud package to create a visualisation of the word frequencies.
+
+library(wordcloud)
+words %>%
+  with(wordcloud(word, n, random.order = FALSE, max.words = 50, colors = "#F29545"))
+```
+
+

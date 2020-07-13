@@ -1,16 +1,13 @@
 ---
 title: "Glossary"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 3
-    toc_float: 
-      collapsed: false
 ---
 
 ```{r child = "setup.Rmd"}
+```
+
+```
+TO DO: acknowledgement; remove/update terms
 ```
 
 ### argument

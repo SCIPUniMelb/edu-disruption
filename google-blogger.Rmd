@@ -1,0 +1,20 @@
+---
+title: "Google Blogger"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+```{r child = "setup.Rmd"}
+```
+
+<br>
+
+## Aim 
+Use the Google Blogger API as a method of data collection from educational bloggers to examine the sentiments associated with the transition from classroom based schooling to remote schooling as a result of the coronavirus (COVID-19) pandemic.
+
+&nbsp;
+
+## Results
+*IN PROGRESS*
+
+&nbsp; 
+

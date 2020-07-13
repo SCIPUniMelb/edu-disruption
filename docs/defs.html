@@ -23,27 +23,105 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -73,7 +151,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="mystyle.css" type="text/css" />
+<link rel="stylesheet" href="imgs/mystyle.css" type="text/css" />
 
 
 
@@ -374,15 +452,18 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Collect data</li>
-    <li>
-      <a href="api-data.html">APIs</a>
-    </li>
+    <li class="dropdown-header">Data collection</li>
     <li>
       <a href="scraping-data.html">Web scraping</a>
     </li>
     <li>
-      <a href="sources-data.html">Data sources</a>
+      <a href="twitter.html">Twitter API</a>
+    </li>
+    <li>
+      <a href="google-blogger.html">Google Blogger API</a>
+    </li>
+    <li>
+      <a href="open-data.html">Other data sources</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Support docs</li>
@@ -421,11 +502,12 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Glossary</h1>
-<h4 class="date">07 July, 2020</h4>
+<h4 class="date">13 July, 2020</h4>
 
 </div>
 
 
+<pre><code>TO DO: acknowledgement; remove/update terms</code></pre>
 <div id="argument" class="section level3">
 <h3>argument</h3>
 <p>A variable that provides input to a <a href="defs.html#function">function</a>.</p>
@@ -442,31 +524,31 @@ mean_age <- mean(ages) %>% round(2)
 <div id="comment" class="section level3">
 <h3>comment</h3>
 <p>You can annotate <code>.R</code> files or <a href="defs.html#chunk">chunks</a> in <code>.Rmd</code> files with comments by prefacing each line of the coment with one or more hash symbols (<code>#</code>).</p>
-<pre class="r"><code># I&#39;m demonstrating comments in this chunk
-# This comment will be added to the document outline ----</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># I&#39;m demonstrating comments in this chunk</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># This comment will be added to the document outline ----</span></span></code></pre></div>
 <p>Comments get added to the document outline if you put four or more dashes, equal signs, or hashes at the end. This is a great way to keep track of more complicated scripts.</p>
 </div>
 <div id="concatenate" class="section level3">
 <h3>concatenate</h3>
 <p>When referring to strings, concatenate means to paste them together using the function <code>paste</code> (adds a space between strings) or <code>paste0</code> (doesn’t add anything between strings).</p>
-<pre class="r"><code>subject_name &lt;- &quot;Lisa&quot;
-paste(&quot;Hello,&quot;, subject_name)
-#&gt; [1] &quot;Hello, Lisa&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>subject_name &lt;-<span class="st"> &quot;Lisa&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">paste</span>(<span class="st">&quot;Hello,&quot;</span>, subject_name)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello, Lisa&quot;</code></pre>
 <p>When referring to other types of variables, concatenate can mean to create a vector with those variables, usually using the <code>c</code> function. For example, you could concatenate the numbers 1, 3, 6, and 10 like this: <code>c(1, 3, 6, 10)</code>. You can concatenate two <a href="defs.html#vector">vector</a>s as well:</p>
-<pre class="r"><code>v1 &lt;- 1:5
-v2 &lt;- 11:15
-c(v1, v2)
-#&gt;  [1]  1  2  3  4  5 11 12 13 14 15</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>v1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>v2 &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">15</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">c</span>(v1, v2)</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5 11 12 13 14 15</code></pre>
 <p class="alert alert-warning">
 Remember, a <a href="defs.html#vector">vector</a> can only have one <a href="defs.html#data_type">data type</a>. So if you concatenate a <a href="defs.html#string">string</a> vector and a <a href="defs.html#numeric">numeric</a> vector, the numbers will get turned into their string versions. If you concatenate an <a href="defs.html#integer">integer</a> and a <a href="defs.html#integer">double</a> vector, the integers will be converted to doubles.
 </p>
-<pre class="r"><code>strings &lt;- c(&quot;a&quot;, &quot;c&quot;, &quot;e&quot;)
-integers &lt;- c(1L, 3L, 5L)
-doubles &lt;- c(1.1, 3.3, 5.5)
-c(strings, integers)
-#&gt; [1] &quot;a&quot; &quot;c&quot; &quot;e&quot; &quot;1&quot; &quot;3&quot; &quot;5&quot;
-c(doubles, integers)
-#&gt; [1] 1.1 3.3 5.5 1.0 3.0 5.0</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>strings &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;e&quot;</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>integers &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 3L, 5L)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>doubles &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.1</span>, <span class="fl">3.3</span>, <span class="fl">5.5</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">c</span>(strings, integers)</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;c&quot; &quot;e&quot; &quot;1&quot; &quot;3&quot; &quot;5&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">c</span>(doubles, integers)</span></code></pre></div>
+<pre><code>## [1] 1.1 3.3 5.5 1.0 3.0 5.0</code></pre>
 </div>
 <div id="data-type" class="section level3">
 <h3>data type</h3>
@@ -477,14 +559,14 @@ c(doubles, integers)
 <li>logical (<code>TRUE</code> or <code>FALSE</code>)</li>
 </ul>
 <p>If you want to know what data type a variable is, use the function <code>typeof</code>.</p>
-<pre class="r"><code>typeof(10)
-#&gt; [1] &quot;double&quot;
-typeof(&quot;10&quot;)
-#&gt; [1] &quot;character&quot;
-typeof(10L)
-#&gt; [1] &quot;integer&quot;
-typeof(10 == 10)
-#&gt; [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">typeof</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">typeof</span>(<span class="st">&quot;10&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">typeof</span>(10L)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">typeof</span>(<span class="dv">10</span> <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
 </div>
 <div id="double" class="section level3">
 <h3>double</h3>
@@ -535,21 +617,21 @@ You can alternatively type the package name and two colons before any function f
 <div id="vector" class="section level3">
 <h3>vector</h3>
 <p>This is a type of data structure that is basically a list of things like T/F values, numbers, or strings. It can get very complicated (see <a href="http://r4ds.had.co.nz/vectors.html">Ch 20 of R for Data Science</a> for a thorough explanation), but at first you just need to be able to understand that the following things are examples of vectors:</p>
-<pre class="r"><code># use the c() function to make a vector of strings or numbers
-liit_ingredients &lt;- c(&quot;vodka&quot;, &quot;gin&quot;, &quot;rum&quot;, &quot;tequila&quot;, &quot;triple sec&quot;, 
-                      &quot;orange juice&quot;, &quot;coke&quot;, &quot;sour mix&quot;)
-
-fun_to_play_at &lt;- c(25, 13, 3, 1)
-
-# the colon between two integers gives you all the numbers from the first to the last integer
-likert &lt;- 1:7</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># use the c() function to make a vector of strings or numbers</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>liit_ingredients &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vodka&quot;</span>, <span class="st">&quot;gin&quot;</span>, <span class="st">&quot;rum&quot;</span>, <span class="st">&quot;tequila&quot;</span>, <span class="st">&quot;triple sec&quot;</span>, </span>
+<span id="cb19-3"><a href="#cb19-3"></a>                      <span class="st">&quot;orange juice&quot;</span>, <span class="st">&quot;coke&quot;</span>, <span class="st">&quot;sour mix&quot;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a>fun_to_play_at &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">13</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co"># the colon between two integers gives you all the numbers from the first to the last integer</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>likert &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">7</span></span></code></pre></div>
 <p>The variable <code>letters</code> is a built-in vector with the latin letters in order. You can select part of a vector by putting the numeric location of what element you want inside of square brackets after the vector. You can even put a vector of numbers inside the square brackets to select several elements.</p>
-<pre class="r"><code>letters[26]
-#&gt; [1] &quot;z&quot;
-letters[1:5]
-#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;
-letters[fun_to_play_at]
-#&gt; [1] &quot;y&quot; &quot;m&quot; &quot;c&quot; &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>letters[<span class="dv">26</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>letters[fun_to_play_at]</span></code></pre></div>
+<pre><code>## [1] &quot;y&quot; &quot;m&quot; &quot;c&quot; &quot;a&quot;</code></pre>
 </div>
 <div id="widget" class="section level3">
 <h3>widget</h3>

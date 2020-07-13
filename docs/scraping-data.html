@@ -11,7 +11,7 @@
 
 
 
-<title>data through web scraping</title>
+<title>Web scraping</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,27 +23,105 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -73,7 +151,7 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="mystyle.css" type="text/css" />
+<link rel="stylesheet" href="imgs/mystyle.css" type="text/css" />
 
 
 
@@ -374,15 +452,18 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Collect data</li>
-    <li>
-      <a href="api-data.html">APIs</a>
-    </li>
+    <li class="dropdown-header">Data collection</li>
     <li>
       <a href="scraping-data.html">Web scraping</a>
     </li>
     <li>
-      <a href="sources-data.html">Data sources</a>
+      <a href="twitter.html">Twitter API</a>
+    </li>
+    <li>
+      <a href="google-blogger.html">Google Blogger API</a>
+    </li>
+    <li>
+      <a href="open-data.html">Other data sources</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Support docs</li>
@@ -420,184 +501,154 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">data through web scraping</h1>
-<h4 class="date">07 July, 2020</h4>
+<h1 class="title toc-ignore">Web scraping</h1>
+<h4 class="date">13 July, 2020</h4>
 
 </div>
 
 
-<div id="scope" class="section level2">
+<p><br></p>
+<div id="aim" class="section level2">
+<h2>Aim</h2>
+<p>Use data scraping as a method of data collection from educational bloggers to examine the sentiments associated with the transition from classroom based schooling to remote schooling as a result of the coronavirus (COVID-19) pandemic.</p>
+<p> </p>
+</div>
+<div id="scope" class="section level2 tabset">
 <h2>Scope</h2>
-<p>The source of data were blogs</p>
-<div id="blogs" class="section level3">
-<h3>Blogs</h3>
+<p>Before any data scraping can commence it’s necessary to identify blogs of interest. This particular exploration only deals with the output of a single blogger, however future work might look at incorporating more blog entries and/or new blogs so as to build a larger dataset. For ethical considerations it is necessary to refer to the data collection plicies of the respective blogging platform (refer to <a href="https://scipunimelb.github.io/edu-disruption/slides/rc-apis.html#31" class="uri">https://scipunimelb.github.io/edu-disruption/slides/rc-apis.html#31</a>).</p>
+<div id="requirements-for-data-collection" class="section level3">
+<h3>Requirements for data collection</h3>
 <ol style="list-style-type: decimal">
-<li><a href="https://edublogs.org" class="uri">https://edublogs.org</a></li>
-<li><a href="https://www.blogger.com" class="uri">https://www.blogger.com</a></li>
+<li>Confirm keywords (search terms) of interest</li>
+<li>Identify blog(s) of interest</li>
+<li>Review Terms of Service for use of data</li>
+<li>Identify suitable method for data collection</li>
 </ol>
-<p><a href="https://edublogs.org/robots.txt">https://edublogs.org/robots.txt</a></p>
-<p><a href="https://developers.google.com/blogger">https://developers.google.com/blogger</a></p>
-<ol style="list-style-type: decimal">
-<li>Go to Google.com.</li>
-<li>Enter site:www.website.com and ‘Search Term’ into the search box.</li>
-<li>Refine your search.</li>
-</ol>
-<p>Find Blogs on Blogger through Google web search. To find a blogger on Google you have to make the following queries in to the Google.</p>
-<p><code>site:blogger.com Search_Term</code><br />
-OR<br />
-<code>site:blogspot.com Search_Term</code><br />
-OR <code>site:edutopia.org covid virtual pedagogy</code></p>
-<p><a href="https://www.google.com/search?client=firefox-b-d&amp;q=site%3Ablogger.com+distance+education">site:blogger.com distance education</a><br />
-OR <a href="https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy">site:edublogs.org covid pedagogy</a></p>
-<p><code>site:edutopia.org covid virtual pedagogy</code> <a href="https://www.edutopia.org/terms-of-use" class="uri">https://www.edutopia.org/terms-of-use</a></p>
-<p><a href="https://visualisingideas.edublogs.org/2020/03/" class="uri">https://visualisingideas.edublogs.org/2020/03/</a> <a href="https://scis.edublogs.org/tag/remote-learning/" class="uri">https://scis.edublogs.org/tag/remote-learning/</a></p>
-<p><a href="https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/" class="uri">https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/</a> <a href="https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/" class="uri">https://www.blog.google/outreach-initiatives/education/social-emotional-learning-covid19/</a> <a href="https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/" class="uri">https://gemreportunesco.wordpress.com/2020/04/01/covid-19-wheres-the-discussion-on-distance-learning-training-for-teachers/</a></p>
-<pre class="r"><code># https://towardsdatascience.com/tidy-web-scraping-in-r-tutorial-and-resources-ac9f72b4fe47
-
-if (!(&quot;rvest&quot; %in% installed.packages())) {
- install.packages(&quot;rvest&quot;)
-}
-
-if (!(&quot;dplyr&quot; %in% installed.packages())) {
- install.packages(&quot;dplyr&quot;)
-}
-
-library(rvest)
-#&gt; Loading required package: xml2
-library(dplyr)
-#&gt; 
-#&gt; Attaching package: &#39;dplyr&#39;
-#&gt; The following objects are masked from &#39;package:stats&#39;:
-#&gt; 
-#&gt;     filter, lag
-#&gt; The following objects are masked from &#39;package:base&#39;:
-#&gt; 
-#&gt;     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>hot100page &lt;- &quot;https://www.billboard.com/charts/hot-100&quot;
-hot100 &lt;- read_html(hot100page)
-
-hot100
-#&gt; {html_document}
-#&gt; &lt;html class=&quot;&quot; lang=&quot;&quot;&gt;
-#&gt; [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
-#&gt; [2] &lt;body class=&quot;chart-page chart-page-&quot; data-trackcategory=&quot;Charts-TheHot100 ...
-str(hot100)
-#&gt; List of 2
-#&gt;  $ node:&lt;externalptr&gt; 
-#&gt;  $ doc :&lt;externalptr&gt; 
-#&gt;  - attr(*, &quot;class&quot;)= chr [1:2] &quot;xml_document&quot; &quot;xml_node&quot;</code></pre>
-<pre class="r"><code>#  list of nodes inside the body of the page.
-body_nodes &lt;- hot100 %&gt;% 
- html_node(&quot;body&quot;) %&gt;% 
- html_children()
-
-body_nodes
-#&gt; {xml_nodeset (36)}
-#&gt;  [1] &lt;div class=&quot;header-wrapper &quot;&gt;\n&lt;header id=&quot;site-header&quot; class=&quot;site-head ...
-#&gt;  [2] &lt;div class=&quot;site-header__placeholder&quot;&gt;&lt;/div&gt;
-#&gt;  [3] &lt;script&gt;\n        var PGM = window.PGM || {};\n        PGM.config = PGM. ...
-#&gt;  [4] &lt;div class=&quot;chart-piano-overlay__attachment-point&quot;&gt;&lt;/div&gt;
-#&gt;  [5] &lt;main id=&quot;main&quot; class=&quot;page-content&quot;&gt;&lt;div id=&quot;charts&quot; data-page-title=&quot;T ...
-#&gt;  [6] &lt;div class=&quot;ad_desktop dfp-ad dfp-ad-promo &quot; data-position=&quot;promo&quot; data- ...
-#&gt;  [7] &lt;div class=&quot;ad-container footerboard footerboard--bottom&quot;&gt;\n    &lt;div cla ...
-#&gt;  [8] &lt;footer id=&quot;site-footer&quot; class=&quot;site-footer&quot;&gt;&lt;div class=&quot;container foote ...
-#&gt;  [9] &lt;div class=&quot;biz-modal&quot;&gt;\n    &lt;div class=&quot;biz-modal__content&quot;&gt;\n        &lt; ...
-#&gt; [10] &lt;script&gt;\n    window.CLARITY = window.CLARITY || [];\n&lt;/script&gt;
-#&gt; [11] &lt;div class=&quot;ad_clarity&quot; data-out-of-page=&quot;true&quot; style=&quot;display: none;&quot;&gt;&lt; ...
-#&gt; [12] &lt;script&gt;\n    var darkMatterCMD = function() {\n        this.darkMatterC ...
-#&gt; [13] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/art ...
-#&gt; [14] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/clo ...
-#&gt; [15] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
-#&gt; [16] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
-#&gt; [17] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
-#&gt; [18] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/vendors_/rea ...
-#&gt; [19] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/default_/art ...
-#&gt; [20] &lt;script src=&quot;https://www.billboard.com/assets/1593527595/js/default_/rea ...
-#&gt; ...</code></pre>
-<pre class="r"><code>rank &lt;- hot100 %&gt;% 
-  rvest::html_nodes(&#39;body&#39;) %&gt;% 
-  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__rank__number&#39;)]&quot;) %&gt;% 
-  rvest::html_text()
-
-artist &lt;- hot100 %&gt;% 
-  rvest::html_nodes(&#39;body&#39;) %&gt;% 
-  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__information__artist&#39;)]&quot;) %&gt;% 
-  rvest::html_text()
-
-title &lt;- hot100 %&gt;% 
-  rvest::html_nodes(&#39;body&#39;) %&gt;% 
-  xml2::xml_find_all(&quot;//span[contains(@class, &#39;chart-element__information__song&#39;)]&quot;) %&gt;% 
-  rvest::html_text()
-
-chart_df &lt;- data.frame(rank, artist, title)
-
-knitr::kable(
-  chart_df  %&gt;% head(10))</code></pre>
+</div>
+<div id="sample-edu-bloggers" class="section level3">
+<h3>Sample edu-bloggers</h3>
+<ul>
+<li><a href="https://visualisingideas.edublogs.org/2020/03/29/visualising-a-discussion-prompt-for-students-on-studying-habits-at-home">Blog one example</a></li>
+<li><a href="https://mrsdkrebs.edublogs.org/2020/07/01/insights-from-remote-learning/">Blog two example</a></li>
+</ul>
+</div>
+<div id="use-of-data-privacy-ethics" class="section level3">
+<h3>Use of data (Privacy &amp; Ethics)</h3>
+<p>I began by looking at the following blogging platforms that are popular with teachers: <em>edublogs.org</em>, <em>blogger.com</em> and <em>edutopia.org</em>. Two platforms grant permission for data from their websites to be used and one does not.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">rank</th>
-<th align="left">artist</th>
-<th align="left">title</th>
+<th>Website</th>
+<th>Allow data to be used</th>
+<th>Mechanism</th>
+<th>Details</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
-<td align="left">DaBaby Featuring Roddy Ricch</td>
-<td align="left">Rockstar</td>
+<td>edublogs.org</td>
+<td>Yes</td>
+<td>Scraping</td>
+<td><a href="https://edublogs.org/robots.txt">https://edublogs.org/robots.txt</a></td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
-<td align="left">Megan Thee Stallion Featuring Beyonce</td>
-<td align="left">Savage</td>
+<td>blogger.com</td>
+<td>Yes</td>
+<td>API</td>
+<td><a href="https://developers.google.com/blogger">https://developers.google.com/blogger</a></td>
 </tr>
 <tr class="odd">
-<td align="left">3</td>
-<td align="left">The Weeknd</td>
-<td align="left">Blinding Lights</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">SAINt JHN</td>
-<td align="left">Roses</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">Justin Bieber Featuring Quavo</td>
-<td align="left">Intentions</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">Doja Cat Featuring Nicki Minaj</td>
-<td align="left">Say So</td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="left">Lil Baby</td>
-<td align="left">The Bigger Picture</td>
-</tr>
-<tr class="even">
-<td align="left">8</td>
-<td align="left">Jack Harlow Featuring DaBaby, Tory Lanez &amp; Lil Wayne</td>
-<td align="left">Whats Poppin</td>
-</tr>
-<tr class="odd">
-<td align="left">9</td>
-<td align="left">Lil Mosey</td>
-<td align="left">Blueberry Faygo</td>
-</tr>
-<tr class="even">
-<td align="left">10</td>
-<td align="left">Post Malone</td>
-<td align="left">Circles</td>
+<td>edutopia.org</td>
+<td>No</td>
+<td>-</td>
+<td><a href="https://www.edutopia.org/terms-of-use">https://developers.google.com/blogger</a></td>
 </tr>
 </tbody>
 </table>
+<p> </p>
 </div>
-<div id="twitter-threads" class="section level3">
-<h3>Twitter (threads)</h3>
-<p><span class="citation">@threadreaderapp</span> ‘unroll’ <span class="citation">[Twitter thread vy @YaeganDoran]</span>(<a href="https://threadreaderapp.com/thread/1272337288249217025.html" class="uri">https://threadreaderapp.com/thread/1272337288249217025.html</a>)</p>
+</div>
+<div id="method" class="section level2 tabset">
+<h2>Method</h2>
+<p>This section steps through the process of identifying suitable blogs for scraping, through to scraping the blog using the R package <code>rvest</code>.</p>
+<div id="methods-for-data-collection" class="section level3">
+<h3>Methods for data collection</h3>
+<p>Common approaches to text mining include: 1. <em>Web scraping</em> refers to the process of automatically extracting textual data from web pages and other digital files (Ignatow &amp; Mihalcea, 2018).<br />
+2. <em>APIs</em> provide data in a digital format that computers can understand and use (often referred to as <em>machine-readable</em> data). (Sherratt, 2019).</p>
+</div>
+<div id="identify-blogs-of-interest" class="section level3">
+<h3>Identify blogs of interest</h3>
+<p>You can find education blogs by using the following search terms in Google:</p>
+<ul>
+<li><code>site:www.website.com</code> and <code>Search Term</code></li>
+<li>for example <a href="https://www.google.com/search?q=site%3Aedublogs.org+covid+pedagogy">site:edublogs.org covid pedagogy</a></li>
+</ul>
+<p>The search results will include both blogs created by teachers and blogs created by education providers (EG: <a href="https://www.blog.google/outreach-initiatives/education/distancelearning-covid19/">Google for Education</a>.</p>
+</div>
+<div id="scrape-text-from-blog" class="section level3">
+<h3>Scrape text from blog</h3>
+<p>The website used in this instance was <a href="https://visualisingideas.edublogs.org/2020/03/">https://visualisingideas.edublogs.org/2020/03/</a>.</p>
+<p>The first step is to gather the HTML page from the blog.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># set-up url for scraping</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>march20_archive =<span class="st"> &quot;https://visualisingideas.edublogs.org/2020/03/&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Read the HTML code from the website</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>march_posts &lt;-<span class="st"> </span><span class="kw">read_html</span>(march20_archive)</span></code></pre></div>
+<p>A web page contains a lot of content and we may not need everything. Web scraping is performed in such a way to target the pieces of content we are most interested in.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>march_titles &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(march_posts,<span class="st">&#39;.entry-title&#39;</span>)   <span class="co">#’.entry-title’ is the blog Title</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>march_paras &lt;-<span class="st"> </span><span class="kw">html_nodes</span>(march_posts,<span class="st">&#39;p&#39;</span>)   <span class="co">#’p’ are the paragraphs</span></span></code></pre></div>
+<p>How many titles do we have (<em>NB:</em> this url is an archive of the blog posts that were written in March 2020).</p>
+<pre><code>## [1] &quot;Visualising a Discussion Prompt for Students on Studying Habits at Home&quot;                 
+## [2] &quot;Double Book Post: “The House of Spirits” by Allende &amp; “Where the Crawdads Sing” by Owens&quot;
+## [3] &quot;Compare and Infer!&quot;                                                                      
+## [4] &quot;Online Teaching for Students Who Never Read Instructions&quot;                                
+## [5] &quot;“Women’s Day”, Being A Teacher &amp; “The Mermaid Chair” by Sue Monk Kidd&quot;</code></pre>
+<p> </p>
+</div>
+</div>
+<div id="text-as-data" class="section level2 tabset">
+<h2>Text as data</h2>
+<p>Examine the results of the new dataset and carry out some preliminary sentiment analysis.</p>
+<div id="what-are-the-most-commonly-used-words" class="section level3">
+<h3>What are the most commonly used words?</h3>
+<p>Generally most text analysis algorithms involve detecting patterns, such as identifying <em>word frequency</em> relatively unique to a particular dataset. The simplest word frequency analysis is assessing the most common words in text. We can remove all the <code>stop words</code> that are not informative (ie: <em>the, and, to, of, a, …</em>).</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["word"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"students","2":"17"},{"1":"book","2":"14"},{"1":"instructions","2":"10"},{"1":"family","2":"9"},{"1":"reading","2":"9"},{"1":"don’t","2":"7"},{"1":"read","2":"6"},{"1":"teacher","2":"6"},{"1":"day","2":"5"},{"1":"life","2":"5"},{"1":"video","2":"5"},{"1":"worksheet","2":"5"},{"1":"bit","2":"4"},{"1":"home","2":"4"},{"1":"i’m","2":"4"},{"1":"school","2":"4"},{"1":"time","2":"4"},{"1":"women","2":"4"},{"1":"answer","2":"3"},{"1":"character","2":"3"},{"1":"completely","2":"3"},{"1":"days","2":"3"},{"1":"doesn’t","2":"3"},{"1":"email","2":"3"},{"1":"enjoy","2":"3"},{"1":"esteban","2":"3"},{"1":"exercise","2":"3"},{"1":"hard","2":"3"},{"1":"house","2":"3"},{"1":"job","2":"3"},{"1":"learned","2":"3"},{"1":"leave","2":"3"},{"1":"online","2":"3"},{"1":"question","2":"3"},{"1":"totally","2":"3"},{"1":"woman","2":"3"},{"1":"women’s","2":"3"},{"1":"words","2":"3"},{"1":"abandoned","2":"2"},{"1":"amusing","2":"2"},{"1":"art","2":"2"},{"1":"author","2":"2"},{"1":"blessings","2":"2"},{"1":"blog","2":"2"},{"1":"books","2":"2"},{"1":"call","2":"2"},{"1":"career","2":"2"},{"1":"chair","2":"2"},{"1":"confusing","2":"2"},{"1":"deaf","2":"2"},{"1":"descriptions","2":"2"},{"1":"didn’t","2":"2"},{"1":"discovered","2":"2"},{"1":"engaging","2":"2"},{"1":"enter","2":"2"},{"1":"extremely","2":"2"},{"1":"fails","2":"2"},{"1":"gender","2":"2"},{"1":"generation","2":"2"},{"1":"hearing","2":"2"},{"1":"hope","2":"2"},{"1":"i’ve","2":"2"},{"1":"income","2":"2"},{"1":"language","2":"2"},{"1":"learning","2":"2"},{"1":"level","2":"2"},{"1":"link","2":"2"},{"1":"married","2":"2"},{"1":"mermaid","2":"2"},{"1":"people","2":"2"},{"1":"phrases","2":"2"},{"1":"post","2":"2"},{"1":"repetitive","2":"2"},{"1":"rewarding","2":"2"},{"1":"rich","2":"2"},{"1":"send","2":"2"},{"1":"situation","2":"2"},{"1":"skills","2":"2"},{"1":"sound","2":"2"},{"1":"spam","2":"2"},{"1":"start","2":"2"},{"1":"story","2":"2"},{"1":"study","2":"2"},{"1":"system","2":"2"},{"1":"teachers","2":"2"},{"1":"teaching","2":"2"},{"1":"times","2":"2"},{"1":"trueba","2":"2"},{"1":"unfamiliar","2":"2"},{"1":"unusual","2":"2"},{"1":"virus","2":"2"},{"1":"wikipedia","2":"2"},{"1":"win","2":"2"},{"1":"10th","2":"1"},{"1":"164171","2":"1"},{"1":"2","2":"1"},{"1":"2582","2":"1"},{"1":"3","2":"1"},{"1":"47975","2":"1"},{"1":"8","2":"1"},{"1":"absorbed","2":"1"},{"1":"adage","2":"1"},{"1":"added","2":"1"},{"1":"adding","2":"1"},{"1":"adjust","2":"1"},{"1":"administrators","2":"1"},{"1":"admit","2":"1"},{"1":"adolescent","2":"1"},{"1":"ago","2":"1"},{"1":"answering","2":"1"},{"1":"answers","2":"1"},{"1":"anymore","2":"1"},{"1":"apply","2":"1"},{"1":"aren’t","2":"1"},{"1":"artist","2":"1"},{"1":"assumption","2":"1"},{"1":"based","2":"1"},{"1":"bedrooms","2":"1"},{"1":"befell","2":"1"},{"1":"beginning","2":"1"},{"1":"believable","2":"1"},{"1":"bother","2":"1"},{"1":"bright","2":"1"},{"1":"brought","2":"1"},{"1":"builds","2":"1"},{"1":"can’t","2":"1"},{"1":"captions","2":"1"},{"1":"carolina","2":"1"},{"1":"carreer","2":"1"},{"1":"caused","2":"1"},{"1":"chance","2":"1"},{"1":"changed","2":"1"},{"1":"check","2":"1"},{"1":"child","2":"1"},{"1":"children","2":"1"},{"1":"chile","2":"1"},{"1":"choice","2":"1"},{"1":"chose","2":"1"},{"1":"chosen","2":"1"},{"1":"classroom","2":"1"},{"1":"cleverly","2":"1"},{"1":"click","2":"1"},{"1":"clicking","2":"1"},{"1":"closed","2":"1"},{"1":"coming","2":"1"},{"1":"commonly","2":"1"},{"1":"companion","2":"1"},{"1":"compared","2":"1"},{"1":"comparing","2":"1"},{"1":"complaints","2":"1"},{"1":"complete","2":"1"},{"1":"completed","2":"1"},{"1":"complex","2":"1"},{"1":"complexity","2":"1"},{"1":"comprehension","2":"1"},{"1":"confidence","2":"1"},{"1":"confirmation","2":"1"},{"1":"consult","2":"1"},{"1":"contact","2":"1"},{"1":"content","2":"1"},{"1":"continue","2":"1"},{"1":"contradict","2":"1"},{"1":"contrasting","2":"1"},{"1":"corona","2":"1"},{"1":"coronavirus","2":"1"},{"1":"couldn’t","2":"1"},{"1":"count","2":"1"},{"1":"crawdads","2":"1"},{"1":"crazy","2":"1"},{"1":"currents","2":"1"},{"1":"cycles","2":"1"},{"1":"daughter","2":"1"},{"1":"daughters","2":"1"},{"1":"daylight","2":"1"},{"1":"deal","2":"1"},{"1":"define","2":"1"},{"1":"designed","2":"1"},{"1":"desire","2":"1"},{"1":"detailed","2":"1"},{"1":"develop","2":"1"},{"1":"developing","2":"1"},{"1":"developments","2":"1"},{"1":"die","2":"1"},{"1":"differences","2":"1"},{"1":"difficult","2":"1"},{"1":"disasters","2":"1"},{"1":"discrimination","2":"1"},{"1":"discuss","2":"1"},{"1":"discussion","2":"1"},{"1":"download","2":"1"},{"1":"downloadable","2":"1"},{"1":"dripping","2":"1"},{"1":"dwell","2":"1"},{"1":"effort","2":"1"},{"1":"enable","2":"1"},{"1":"encourage","2":"1"},{"1":"endless","2":"1"},{"1":"english","2":"1"},{"1":"enjoyed","2":"1"},{"1":"ensure","2":"1"},{"1":"equation","2":"1"},{"1":"eternally","2":"1"},{"1":"events","2":"1"},{"1":"exams","2":"1"},{"1":"exceptions","2":"1"},{"1":"experience","2":"1"},{"1":"experienced","2":"1"},{"1":"explain","2":"1"},{"1":"express","2":"1"},{"1":"expresses","2":"1"},{"1":"female","2":"1"},{"1":"file","2":"1"},{"1":"finding","2":"1"},{"1":"finished","2":"1"},{"1":"focus","2":"1"},{"1":"focuses","2":"1"},{"1":"foreign","2":"1"},{"1":"foresee","2":"1"},{"1":"forgotten","2":"1"},{"1":"form","2":"1"},{"1":"fortunate","2":"1"},{"1":"fought","2":"1"},{"1":"free","2":"1"},{"1":"generations","2":"1"},{"1":"girl","2":"1"},{"1":"giving","2":"1"},{"1":"glad","2":"1"},{"1":"golden","2":"1"},{"1":"goodbye","2":"1"},{"1":"goodies","2":"1"},{"1":"google","2":"1"},{"1":"grade","2":"1"},{"1":"grateful","2":"1"},{"1":"green","2":"1"},{"1":"grew","2":"1"},{"1":"habits","2":"1"},{"1":"half","2":"1"},{"1":"haven’t","2":"1"},{"1":"health","2":"1"},{"1":"hear","2":"1"},{"1":"helping","2":"1"},{"1":"history","2":"1"},{"1":"hit","2":"1"},{"1":"homework","2":"1"},{"1":"honestly","2":"1"},{"1":"hoped","2":"1"},{"1":"husband","2":"1"},{"1":"i’d","2":"1"},{"1":"imagined","2":"1"},{"1":"importance","2":"1"},{"1":"improved","2":"1"},{"1":"independent","2":"1"},{"1":"independently","2":"1"},{"1":"inferring","2":"1"},{"1":"insert","2":"1"},{"1":"instantly","2":"1"},{"1":"instruction","2":"1"},{"1":"interact","2":"1"},{"1":"interactive","2":"1"},{"1":"intervention","2":"1"},{"1":"invest","2":"1"},{"1":"invincible","2":"1"},{"1":"involves","2":"1"},{"1":"isn’t","2":"1"},{"1":"it’s","2":"1"},{"1":"kidd","2":"1"},{"1":"kitchen","2":"1"},{"1":"kya","2":"1"},{"1":"landscape","2":"1"},{"1":"larger","2":"1"},{"1":"late","2":"1"},{"1":"lead","2":"1"},{"1":"led","2":"1"},{"1":"letters","2":"1"},{"1":"levels","2":"1"},{"1":"list","2":"1"},{"1":"live","2":"1"},{"1":"lives","2":"1"},{"1":"liveworksheets.comloadliveworksheet","2":"1"},{"1":"living","2":"1"},{"1":"love","2":"1"},{"1":"lovely","2":"1"},{"1":"magical","2":"1"},{"1":"mailing","2":"1"},{"1":"main","2":"1"},{"1":"majority","2":"1"},{"1":"makes","2":"1"},{"1":"manage","2":"1"},{"1":"march","2":"1"},{"1":"marriage","2":"1"},{"1":"marshes","2":"1"},{"1":"match","2":"1"},{"1":"materials","2":"1"},{"1":"matter","2":"1"},{"1":"message","2":"1"},{"1":"millin’s","2":"1"},{"1":"mistaken","2":"1"},{"1":"mixed","2":"1"},{"1":"monk","2":"1"},{"1":"move","2":"1"},{"1":"moved","2":"1"},{"1":"moving","2":"1"},{"1":"mustard","2":"1"},{"1":"naomima","2":"1"},{"1":"national","2":"1"},{"1":"nature","2":"1"},{"1":"north","2":"1"},{"1":"notable","2":"1"},{"1":"notebook","2":"1"},{"1":"nowadays","2":"1"},{"1":"obvious","2":"1"},{"1":"opportunities","2":"1"},{"1":"opportunity","2":"1"},{"1":"opt","2":"1"},{"1":"optimistic","2":"1"},{"1":"options","2":"1"},{"1":"owner","2":"1"},{"1":"perceives","2":"1"},{"1":"perfect","2":"1"},{"1":"period","2":"1"},{"1":"pleased","2":"1"},{"1":"plenty","2":"1"},{"1":"plot","2":"1"},{"1":"policy","2":"1"},{"1":"possessing","2":"1"},{"1":"praise","2":"1"},{"1":"prefer","2":"1"},{"1":"prepare","2":"1"},{"1":"prepared","2":"1"},{"1":"privacy","2":"1"},{"1":"professions","2":"1"},{"1":"progress","2":"1"},{"1":"prompt","2":"1"},{"1":"proper","2":"1"},{"1":"protected","2":"1"},{"1":"protection","2":"1"},{"1":"proving","2":"1"},{"1":"puberty","2":"1"},{"1":"qqkoicva","2":"1"},{"1":"qualities","2":"1"},{"1":"quit","2":"1"},{"1":"realism","2":"1"},{"1":"realize","2":"1"},{"1":"recaptcha","2":"1"},{"1":"recently","2":"1"},{"1":"recommend","2":"1"},{"1":"reflect","2":"1"},{"1":"refuse","2":"1"},{"1":"remain","2":"1"},{"1":"reminded","2":"1"},{"1":"request","2":"1"},{"1":"require","2":"1"},{"1":"reread","2":"1"},{"1":"resolved","2":"1"},{"1":"respectable","2":"1"},{"1":"respond","2":"1"},{"1":"salary","2":"1"},{"1":"sandy","2":"1"},{"1":"savings","2":"1"},{"1":"scheduled","2":"1"},{"1":"schemes","2":"1"},{"1":"schoolbooks","2":"1"},{"1":"schools","2":"1"},{"1":"senseless","2":"1"},{"1":"service","2":"1"},{"1":"sexual","2":"1"},{"1":"share","2":"1"},{"1":"shift","2":"1"},{"1":"short","2":"1"},{"1":"simple","2":"1"},{"1":"simply","2":"1"},{"1":"sing","2":"1"},{"1":"single","2":"1"},{"1":"site","2":"1"},{"1":"slowing","2":"1"},{"1":"smart","2":"1"},{"1":"sort","2":"1"},{"1":"source","2":"1"},{"1":"special","2":"1"},{"1":"spirits","2":"1"},{"1":"spoilers","2":"1"},{"1":"staying","2":"1"},{"1":"stopped","2":"1"},{"1":"stressful","2":"1"},{"1":"student","2":"1"},{"1":"sudden","2":"1"},{"1":"suddenly","2":"1"},{"1":"sue","2":"1"},{"1":"superstitions","2":"1"},{"1":"supporting","2":"1"},{"1":"supportive","2":"1"},{"1":"supposed","2":"1"},{"1":"supposedly","2":"1"},{"1":"tables","2":"1"},{"1":"takes","2":"1"},{"1":"tale","2":"1"},{"1":"task","2":"1"},{"1":"tense","2":"1"},{"1":"terms","2":"1"},{"1":"text","2":"1"},{"1":"there’s","2":"1"},{"1":"thinking","2":"1"},{"1":"ties","2":"1"},{"1":"tips","2":"1"},{"1":"title","2":"1"},{"1":"touch","2":"1"},{"1":"translations","2":"1"},{"1":"travel","2":"1"},{"1":"unclear","2":"1"},{"1":"uncles","2":"1"},{"1":"understand","2":"1"},{"1":"unhappy","2":"1"},{"1":"unread","2":"1"},{"1":"unsavory","2":"1"},{"1":"valid","2":"1"},{"1":"veracity","2":"1"},{"1":"version","2":"1"},{"1":"violence","2":"1"},{"1":"vivid","2":"1"},{"1":"voice","2":"1"},{"1":"wait","2":"1"},{"1":"wasn’t","2":"1"},{"1":"watch","2":"1"},{"1":"we’re","2":"1"},{"1":"we’ve","2":"1"},{"1":"wishing","2":"1"},{"1":"won’t","2":"1"},{"1":"world","2":"1"},{"1":"worn","2":"1"},{"1":"worry","2":"1"},{"1":"woven","2":"1"},{"1":"writes","2":"1"},{"1":"written","2":"1"},{"1":"wrong","2":"1"},{"1":"www","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="what-are-the-prevalent-sentiments-positive-negative" class="section level3">
+<h3>What are the prevalent sentiments (positive, negative)?</h3>
+<p>In <em>sentiment analysis</em> assigns a word to one or more sentiments. The lexicon used here divides words into positive and negative sentiments.</p>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Positive"],"name":[1],"type":["chr"],"align":["left"]},{"label":["pos_total"],"name":[2],"type":["int"],"align":["right"]},{"label":["Negative"],"name":[3],"type":["chr"],"align":["left"]},{"label":["neg_total"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"enjoy","2":"3","3":"hard","4":"3"},{"1":"amusing","2":"2","3":"confusing","4":"2"},{"1":"engaging","2":"2","3":"deaf","4":"2"},{"1":"rewarding","2":"2","3":"fails","4":"2"},{"1":"rich","2":"2","3":"repetitive","4":"2"},{"1":"win","2":"2","3":"unfamiliar","4":"2"},{"1":"believable","2":"1","3":"unusual","4":"2"},{"1":"bright","2":"1","3":"virus","4":"2"},{"1":"cleverly","2":"1","3":"bother","4":"1"},{"1":"confidence","2":"1","3":"complaints","4":"1"},{"1":"encourage","2":"1","3":"complex","4":"1"},{"1":"enjoyed","2":"1","3":"contradict","4":"1"},{"1":"fortunate","2":"1","3":"crazy","4":"1"},{"1":"free","2":"1","3":"die","4":"1"},{"1":"glad","2":"1","3":"difficult","4":"1"},{"1":"golden","2":"1","3":"discrimination","4":"1"},{"1":"grateful","2":"1","3":"dripping","4":"1"},{"1":"helping","2":"1","3":"mistaken","4":"1"},{"1":"improved","2":"1","3":"plot","4":"1"},{"1":"instantly","2":"1","3":"refuse","4":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p> </p>
+</div>
+</div>
+<div id="next-steps" class="section level2 tabset">
+<h2>Next steps</h2>
+<p>Some options for further developent.</p>
+<div id="larger-dataset" class="section level3">
+<h3>Larger dataset</h3>
+<p>This proof of concept only uses a small dataset consisting of blog entries over a one month period by a single blogger. There is potential to extend this analysis through collecting a larger dataset. A small scale analysis could be done comparing pre-covid and post-covid blog posts.</p>
+</div>
+<div id="different-lexicon" class="section level3">
+<h3>Different Lexicon</h3>
+<p>The lexicon could be replaced or expanded depending on areas of interest (<em>EG:</em> teacher’s feelings (sentiments) aboput transitioning to remote learning &amp;/or changes in their pedagogical approaches as they pivot to online teaching).</p>
+</div>
+<div id="other-sources-of-data" class="section level3">
+<h3>Other sources of data</h3>
+<p><em>Tweets</em> could provide another source of data to examine text published by an educator through social media.</p>
+<p><em>Tweet threads</em> are a string of tweets that are linked together by the author and will relate to a topic in some way. When composing a thread, usually people indicate this by starting it with [Thread] or <code>1/n</code> or some other way to highlight it’s a thread. (<em>source:</em> <a href="https://www.t4rstats.com/how-threads-work.html" class="uri">https://www.t4rstats.com/how-threads-work.html</a>)</p>
+<p>It is possible to combine and display the complete thread by including <code>@threadreaderapp unroll</code> as a comment.</p>
+<p>See <a href="https://threadreaderapp.com/thread/1272337288249217025.html">Dispaly twitter thread</a></p>
+<p><br></p>
+<p><img src="imgs/twitter_thread.png" /></p>
+<p><br></p>
 </div>
 </div>
 

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Twitter</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="imgs/mystyle.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">edu-disruption</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Data collection</li>
+    <li>
+      <a href="scraping-data.html">Web scraping</a>
+    </li>
+    <li>
+      <a href="twitter.html">Twitter API</a>
+    </li>
+    <li>
+      <a href="google-blogger.html">Google Blogger API</a>
+    </li>
+    <li>
+      <a href="open-data.html">Other data sources</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Support docs</li>
+    <li>
+      <a href="slides/rc-apis.html">API slides</a>
+    </li>
+    <li>
+      <a href="packages.html">Packages</a>
+    </li>
+    <li>
+      <a href="defs.html">Glossary</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://scip.unimelb.edu.au/">
+    <span class="fa fa-address-card"></span>
+     
+    SCIP web
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/SCIPUniMelb">
+    <span class="fa fa-twitter"></span>
+     
+    Twitter
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Twitter</h1>
+<h4 class="date">13 July, 2020</h4>
+
+</div>
+
+
+<p><br></p>
+<div id="aim" class="section level2">
+<h2>Aim</h2>
+<p>Use the Twitter API as a method of data collection to investigate how educators tweeting using education hashtags (EG: #remotelearning) are adapting their online learning designs to support positive socioemotional outcomes for their students.</p>
+<p> </p>
+</div>
+<div id="scope" class="section level2 tabset">
+<h2>Scope</h2>
+<p>This evaluation was conducted on Monday 13 July 2020 at the commencement of the second stage of home schooling restrictions.</p>
+<div id="purpose" class="section level3">
+<h3>Purpose</h3>
+<p>Investigate how teachers support students’ socioemotional outcomes in online learning contexts through aspects of their learning design.</p>
+</div>
+<div id="background" class="section level3">
+<h3>Background</h3>
+<p>As a response to the coronavirus (COVID-19) pandemic Victorian schools implemented remote learning during Term 2 (April–June 2020) where most students learnt from home under their school’s guidance.</p>
+<p>A surge in reported cases has led to a return to Stage 3 ‘Stay at Home’ restrictions with most students in Victorian schools returning to flexible and remote learning for the start of Term 3 (20 July 2020).</p>
+</div>
+<div id="keywords-hastags" class="section level3">
+<h3>Keywords (hastags)</h3>
+<ul>
+<li>#remotelearning</li>
+<li>#flexiblelearning</li>
+</ul>
+</div>
+</div>
+<div id="results" class="section level2 tabset">
+<h2>Results</h2>
+<div id="sample-of-tweets-with-remotelearning" class="section level3">
+<h3>Sample of tweets with <code>#remotelearning</code></h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["favorite_count"],"name":[4],"type":["int"],"align":["right"]},{"label":["retweet_count"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-11 15:11:26","2":"JEV_6","3":"Just earned my MIE Trainer Academy on the Microsoft Educator Center! You can check out free PD courses too.\\n https://t.co/YZ5MK0iehe a través de @MicrosoftEDU \\n@Glb_Learning @GrupoSorollaEdu #MerecidasVacaciones\\n#remotelearning","4":"1","5":"0"},{"1":"2020-07-09 15:00:00","2":"lvcoulter","3":"An adult learning principle that helps you as the instructor! \\n\\n#OnlineLearning #onlineteaching #highered #k12  #RemoteTeaching #remotelearning #onlinecoursedesign #coursecreator #onlinecourses #adultlearning #learning https://t.co/4RWQPT9zdd","4":"1","5":"0"},{"1":"2020-07-10 17:30:04","2":"cauthersj","3":"For my teacher friends - the book is available to buy through Amazon.  If you liked Google Infused Classroom, you will love this to get ready for the next school year!   #infusedclassroom #googleforedu #remotelearning https://t.co/ta7VdgsH2F","4":"0","5":"1"},{"1":"2020-07-06 16:21:50","2":"ERAUWorldwide","3":"The presentation was led by Jennifer Roberts, Alan Orr and Jena Lynch. Great job! #GoERAU #aviation #onlinelearning #remotelearning https://t.co/b2hbhUQsDz","4":"4","5":"1"},{"1":"2020-07-07 08:49:57","2":"mrzphd","3":"Here's their video: https://t.co/LVF2z59O6i #TweetMeetEN #RemoteLearning #MicrosoftEdu @MicrosoftTeams @Office365 @MicrosoftEDU","4":"0","5":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="timeline-of-tweets" class="section level3">
+<h3>Timeline of tweets</h3>
+<p><img src="twitter_files/figure-html/tweettimeline-1.png" width="672" /></p>
+</div>
+</div>
+<div id="most-active-usershashtags" class="section level2 tabset">
+<h2>Most active users/hashtags</h2>
+<div id="top-tweeters" class="section level3">
+<h3>Top tweeters</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["screen_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"@Rdene915","2":"103"},{"1":"@NikPeachey","2":"50"},{"1":"@MicrosoftEDU","2":"48"},{"1":"@Jforbesrolfe","2":"40"},{"1":"@GeneseeAcademy","2":"39"},{"1":"@shycreature","2":"35"},{"1":"@peacheypubs","2":"34"},{"1":"@shardapullabha2","2":"34"},{"1":"@Erik_Youngman","2":"24"},{"1":"@EdSuperHighway","2":"23"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="top-hashtags" class="section level3">
+<h3>Top hashtags</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hashtag"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"#RemoteLearning","2":"738"},{"1":"#edtech","2":"525"},{"1":"#education","2":"364"},{"1":"#edchat","2":"333"},{"1":"#distancelearning","2":"300"},{"1":"#onlinelearning","2":"219"},{"1":"#esl","2":"203"},{"1":"#k12","2":"176"},{"1":"#remoteteaching","2":"175"},{"1":"#elearning","2":"158"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="most-popular-tweet" class="section level2 tabset">
+<h2>Most popular tweet</h2>
+<div id="most-retweeted-tweet" class="section level3">
+<h3>Most retweeted tweet</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["retweet_count"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-04 12:20:00","2":"ELmagazine","3":"What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \\n\\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh","4":"391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="most-liked-tweet" class="section level3">
+<h3>Most liked tweet</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["favorite_count"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-09 00:48:02","2":"MrPStrunk","3":"I hate to get political on my professional twitter, but I feel @BetsyDeVosED needs to know I worked harder during quarantine than before to help provide my Ss with a high quality education. I’m insulted by the assumption of the contrary. #edchat #waledchat #remotelearning","4":"2595"},{"1":"2020-07-04 12:20:00","2":"ELmagazine","3":"What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \\n\\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh","4":"865"},{"1":"2020-07-10 03:52:13","2":"MrsEPark1","3":"Dice talk speaking practice just turned digital!\\U0001f3b2\\n\\nDice is my ABSOLUTE favorite teacher tool &amp; structured dialogue is a MUST for #newcomers #SLIFE #ELL and ALL learners. \\n\\nCan't wait to go back and teach w/ #edtech \\U0001f469\\U0001f3fb‍\\U0001f3eb\\U0001f4bb #distancelearning #remotelearning #edutwitter https://t.co/ujhwSkt1eL","4":"590"},{"1":"2020-07-10 11:25:00","2":"EpochTimes","3":"#Students should consider suing #Harvard and #MIT for charging them full #Tuition despite exclusively relying on #RemoteLearning, said @PressSec @KayleighMcEnany. https://t.co/QLN07QaqSe","4":"534"},{"1":"2020-07-04 15:33:02","2":"E_Sheninger","3":"As it looks like more and more schools will open up with some form of #remotelearning here are some resources to help https://t.co/UfC5DBYJ7z #edchat #suptchat #edutwitter #cpchat #COVIDー19 #covid19 #Covid_19 https://t.co/qSNBbz9EK6","4":"505"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="top-emoji" class="section level3">
+<h3>Top emoji</h3>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["emoji"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"\\U0001f449","2":"55"},{"1":"\\U0001f4bb","2":"32"},{"1":"\\u2705","2":"31"},{"1":"\\U0001f44f","2":"28"},{"1":"\\U0001f4da","2":"26"},{"1":"\\u2693","2":"22"},{"1":"➡️","2":"22"},{"1":"\\u23f0","2":"18"},{"1":"\\U0001f447","2":"17"},{"1":"\\u2728","2":"16"},{"1":"❤️","2":"16"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="word-cloud-of-word-frequencies" class="section level2">
+<h2>Word cloud of word frequencies</h2>
+<p><img src="twitter_files/figure-html/wordcloud-1.png" width="672" /></p>
+</div>
+
+
+<hr>
+<br> 
+<table border="0" width="100%">
+  <tr>
+    <td width="100%" align="right" valign="top">
+     <img src="imgs/SCIP-logo-small.png" title="SCIP" border="0">
+    </td>
+  </tr>
+</table>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
