@@ -60,6 +60,7 @@ The search results will include both blogs created by teachers and blogs created
 ```{r libraries, include=FALSE}
 library(tidyverse)
 library(rvest)
+library(DT)
 
 # function to remove html tags
 cleanFun = function(htmlString) {
@@ -128,6 +129,7 @@ Examine the results of the new dataset and carry out some preliminary sentiment 
 
 Generally most text analysis algorithms involve detecting patterns, such as identifying *word frequency* relatively unique to a particular dataset. The simplest word frequency analysis is assessing the most common words in text. We can remove all the `stop words` that are not informative (ie: *the, and, to, of, a, ...*).
 
+<br />
 
 ```{r echo=FALSE}
 
@@ -137,8 +139,10 @@ pp <- p %>%
   unnest_tokens(word, value) %>%
   filter(!word %in% stop_words$word ) %>%
   count(word, sort = TRUE) %>%
-  arrange(desc(n))
-pp
+  arrange(desc(n)) 
+ 
+ DT::datatable(pp, editable = list(target = 'row', pageLength=5, lengthMenu = c(5, 10, 15, 20)))
+
 ```
 
 
@@ -146,6 +150,7 @@ pp
 
 In *sentiment analysis* assigns a word to one or more sentiments. The lexicon used here divides words into positive and negative sentiments. 
 
+<br />
 
 ```{r echo=FALSE}
 
@@ -171,13 +176,12 @@ neg <- pp %>%
   select(Negative = word, neg_total = n) %>% 
   head(20)
 
-(c <-bind_cols(pos, neg))
-
+ DT::datatable(bind_cols(pos, neg), editable = list(target = 'row', pageLength = 5, lengthMenu = c(5, 10, 15, 20)))
+ 
 ```
 
 
-&nbsp;  
-
+<br />
 
 ## Next steps {.tabset}
 

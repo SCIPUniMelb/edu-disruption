@@ -11,9 +11,9 @@
 
 
 
-<title>Twitter</title>
+<title>Twitter API</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -28,6 +28,14 @@
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.13/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 
 
@@ -409,7 +417,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Twitter</h1>
+<h1 class="title toc-ignore">Twitter API</h1>
 <h4 class="date">13 July, 2020</h4>
 
 </div>
@@ -445,65 +453,56 @@ div.tocify {
 <h2>Results</h2>
 <div id="sample-of-tweets-with-remotelearning" class="section level3">
 <h3>Sample of tweets with <code>#remotelearning</code></h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["favorite_count"],"name":[4],"type":["int"],"align":["right"]},{"label":["retweet_count"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-11 15:11:26","2":"JEV_6","3":"Just earned my MIE Trainer Academy on the Microsoft Educator Center! You can check out free PD courses too.\\n https://t.co/YZ5MK0iehe a través de @MicrosoftEDU \\n@Glb_Learning @GrupoSorollaEdu #MerecidasVacaciones\\n#remotelearning","4":"1","5":"0"},{"1":"2020-07-09 15:00:00","2":"lvcoulter","3":"An adult learning principle that helps you as the instructor! \\n\\n#OnlineLearning #onlineteaching #highered #k12  #RemoteTeaching #remotelearning #onlinecoursedesign #coursecreator #onlinecourses #adultlearning #learning https://t.co/4RWQPT9zdd","4":"1","5":"0"},{"1":"2020-07-10 17:30:04","2":"cauthersj","3":"For my teacher friends - the book is available to buy through Amazon.  If you liked Google Infused Classroom, you will love this to get ready for the next school year!   #infusedclassroom #googleforedu #remotelearning https://t.co/ta7VdgsH2F","4":"0","5":"1"},{"1":"2020-07-06 16:21:50","2":"ERAUWorldwide","3":"The presentation was led by Jennifer Roberts, Alan Orr and Jena Lynch. Great job! #GoERAU #aviation #onlinelearning #remotelearning https://t.co/b2hbhUQsDz","4":"4","5":"1"},{"1":"2020-07-07 08:49:57","2":"mrzphd","3":"Here's their video: https://t.co/LVF2z59O6i #TweetMeetEN #RemoteLearning #MicrosoftEdu @MicrosoftTeams @Office365 @MicrosoftEDU","4":"0","5":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="htmlwidget-c33201addffd46fa1d28" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c33201addffd46fa1d28">{"x":{"filter":"none","editable":{"target":"row","pageLength":5,"lengthMenu":[5,10,15,20]},"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["2020-07-08T17:03:59Z","2020-07-07T13:10:52Z","2020-07-10T16:30:00Z","2020-07-08T15:18:42Z","2020-07-04T21:48:10Z","2020-07-09T10:30:05Z","2020-07-09T09:27:56Z","2020-07-12T02:33:09Z","2020-07-12T20:47:47Z","2020-07-08T21:11:05Z","2020-07-13T02:07:06Z","2020-07-08T10:32:24Z","2020-07-07T02:28:00Z","2020-07-07T21:29:06Z","2020-07-09T22:45:05Z","2020-07-08T13:24:00Z","2020-07-09T23:55:01Z","2020-07-07T18:56:48Z","2020-07-07T08:00:28Z","2020-07-08T16:36:12Z","2020-07-07T08:40:50Z","2020-07-08T09:58:13Z","2020-07-09T22:18:40Z","2020-07-07T20:30:18Z","2020-07-04T17:46:52Z","2020-07-07T13:05:19Z","2020-07-08T21:59:01Z","2020-07-09T15:22:57Z","2020-07-07T01:30:06Z","2020-07-06T11:32:00Z"],["membean","nicfinelli","Dyknow","CreositySpace","MrabetNajoua","SusannaOneFile","TELedventurer","wfryer","MariaYniguez","drcharlyws","BxEU4J","MohGalal88","ideaillinois","SharonSmith_edu","EdTechAri","Clever_Books","McGrawHillK12","LaurenRBraden","Tweets_by_MissR","MicrosoftEDU","english247","mrccsolutions","CathyAnnJames","global_edtech","matt_dav","mattbergman14","RAFF_Corp","fisher1000","Rdene915","ClerksWellEC4"],["We know that English teachers like to read, but when was the last time you read for your own enjoyment? Go pick up that book and don't feel guilty about it!  📖\n\n#membean #wednesdaywisdom #teacherselfcare #weloveteachers #vocabulary #2ndaryela #edtech #remotelearning https://t.co/5dahlNNYIW","Want to get some PD this summer...try getting some grants to help pay for it! https://t.co/pEA8XggJUd #remotelearning #getnic","Take some time to really evaluate what tools will work best for you.\n\nThe image below gives you steps on how\n\nFor more information read out blog click below\nhttps://t.co/2ud267QQIX\n\n#k12education #edtech #edchat #remotelearning #distancelearning #professionaldevelopment https://t.co/Bl8nCpVggD","These are some great ideas. We'd like 2 add 2 the mix our Lemonade from Lemons Innovation Challenge for K-5 #parents &amp;amp; #teachers.\nhttps://t.co/6ucTPtJmTt\n\n#STEAM #RemoteLearning #SummerCamp https://t.co/PCG2LgpeW9","#microsoft #MicrosoftEDU #remotelearning #Remote #Learning #Webinar 3 June with the Global #EDUcators.the following topics : #Sway, #MicrosoftTeams #SkypeintheClassrom #EuCodeweek #Flipgrid #Wakelet #Kahoot.@ochifaysel @asalam468 @WakeletC @wakelet @JBDbiz @mannou77 @nasri_asmae https://t.co/sW5gCQMzBr","@OneFileUK now integrates with @MicrosoftTeams - set up a Teams meeting, invite one or multiple learners to the meeting and join the meeting all within OneFile!! \nSocial distancing not social disconnecting!! 💕💕 #remotelearning https://t.co/BKJhlFXDqt","Great job staff and students! So many great ideas insights to take into the next term! @UOW_WATTLE #remotelearning #onlinelearning https://t.co/oJbJ9iOtHH","Here we go. Nashville has decided to start school with 100% #RemoteLearning for all students &amp;amp; teachers.\n\n#covid19 #covid19EDU cc #OklaEd https://t.co/oiDIj3QBfy","ISTE member discount on great books!  Chandler Tech Team’s book club read for the next few weeks is “The Perfect Blend” by Michele Eaton.  Not sure what’s coming but we r preparing for Aug. \n#FutureReady #remotelearning #TeacherAgency @YMeza44 @3rdGradeTekkie @4thgradetechtr1 https://t.co/DafEPaEjuB","For those of you with access to TMLC, check out this new article on \"Educator Stress During the Pandemic\" https://t.co/AMyW6OHsKV 😎\nDM me from TX,OK,AR,MO if you'd like to get temporary access and read the article. #distancelearning #remotelearning https://t.co/o1UCVzkgRy","We all are itching to get back into the classroom. But not in an unsafe situation. #remotelearning #healthjustice","Learning Path link: 👉 https://t.co/UQ3eETXyjB\n\n#MoGalal #MIEExpert #Road2E2 #MicrosoftEDU #RemoteLearning","@MrKosko We are excited for your session, Michael! So much to learn! https://t.co/9zep08SPYI #IDEAil #edtechfest #EdEquity #remotelearning #SEL","Here's my latest article: Are all online lessons created equal?  https://t.co/wfu26EL6qk via @LinkedIn #edtech #teaching #edchat #learning #remotelearning #teachers #UKEdChat #COVID19","The survey was administered through 166 schools w/in 20 school systems across 9 states CA, CO, IL, ME, MI, MN, OH, OR, TX. @Youth_Truth Students Weigh In Learning &amp;amp; Well-Being During COVID-19 https://t.co/QSm6BrgRKJ #DistanceLearning #RemoteLearning #OnlineLearning #StudentVoice https://t.co/ClAUrlnsoL","CleverBooks Activity Plan \"Animal Defense Mechanisms\" by Amanda Graczyk @MrsAmanda\n\nLearn from global #educators how to apply #CleverBooks #AR resources in your K-6 class\n\nhttps://t.co/lNN7ia7YUJ\n\n#ARETEedu, #ARVRinEDU #whyAR @EdTech4Future @ARETEH2020 #CPDinAR #remotelearning https://t.co/uNPDzUdFUa","❓ How can #K12 schools use the Education Stabilization Grant Fund? Learn more: #CARESact #EdChat #RemoteLearning https://t.co/s54NnAfcOr","While physical cons may be cancelled due to Covid-19, that doesn't mean we have to miss all the fun — Check out Denver Pop Culture Con 2020 X-Stream Con, July 14-17!: https://t.co/VQ5g79l9ru\n\n#popculture #convention #remotelearning #artists #writers #readers #GeeksandGamers","#mfltwitterati - Could you please reply with a reason why you think G Suite (Google) is better than Office 365 (Microsoft) or vice versa when delivering online learning and why? Thanks in advance 😀 #educhat #mflchat #edutwitter #languages #education #remotelearning","@elbakkali_aziz @T4EduC @CoSpaces_Edu @MergeVR @mergeedu @Clever_Books @Education_MAROC This looks like a wonderful training session, Aziz. #RemoteLearning","#English Word of The Day - Chocolate Today is World Chocolate Day! Celebrate it with our free lesson about how chocolate is made! (#listening, #vocabulary, B1+) https://t.co/D6zvno4x7w #wotd #esl #tefl #elt #hometeaching #remotelearning #flippedclass https://t.co/6iffgCIlOd","#MRCC can help you reduce workforce #training time by 50%, with the world's first four-dimensional #AdaptiveLearning platform #Area9Rhapsode.\n\nTo know more, connect with us at info@mrccsolutions.com\n\n@Area9Lyceum \n#eLearning #CorporateTraining #Technology #RemoteLearning #AI https://t.co/tLB0wkNtPn","This is exciting news for Teams nerds ! #MST #remotelearning https://t.co/vGPnCoz2f0","Info on the Apple Distinguished Educator: Festival of Learning event available here:\n\nhttps://t.co/uQa0umXmaJ\n\n#ade2020 #EveryoneCanCreate #AppleEDUchat #education #EdTech #eLearning #edutwitter #edchat #remotelearning #OnlineLearning https://t.co/x084TFxCVG","If the @OakNational lesson content could be shared by teachers using Teams or Google Classroom, with docs/slides for children to submit as assignments, then teachers could provide feedback. We still have the problem of children with no devices at home though. #remotelearning","Back to Basics: Collaborative Google Slides presentations for face-to-face or #remotelearning https://t.co/CGHFMN6Svq #GSuiteEDU #udlchat https://t.co/bR01ITKDsY","My Tweeted Times Top: @codesparkapp: 'Add us to your child's #athomelearning routine! 🏡 Our app is designed to teach coding in a fun and creative way. #remotelearning #stem  \n\nThank you Steve for sharing these photos! … https://t.co/1xdrX9v0tn, see more https://t.co/TFDqUwp1hV","Student Voices: Remote Learning Lessons and the Return to School https://t.co/sNWRjBFCmQ New Blog Post! #RemoteLearning #ReturnToLearn #Digigogy https://t.co/ieOKOZtpnz","Explore the new #remotelearning series and more #edtech #learning #education #edchat Monday via getting_smart https://t.co/HuyGRgOeWH #future4EDU #quotes4EDU #thriveinEDU #k12 #ntchat","Despite criticism, some children have started to return to school. Read our blog post outlining how our Senior Project Manager is helping to support his local school using \n@MicrosoftTeams during these challenging times. #remotelearning #education\nhttps://t.co/cVqlCbkuy0"],[0,0,0,1,2,0,0,9,0,0,0,0,0,4,1,1,0,0,2,0,1,1,0,0,0,0,0,1,1,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>created_at<\/th>\n      <th>screen_name<\/th>\n      <th>text<\/th>\n      <th>retweet_count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="timeline-of-tweets" class="section level3">
 <h3>Timeline of tweets</h3>
-<p><img src="twitter_files/figure-html/tweettimeline-1.png" width="672" /></p>
+<p><img src="twitter_files/figure-html/timeline-1.png" width="672" /></p>
 </div>
 </div>
 <div id="most-active-usershashtags" class="section level2 tabset">
 <h2>Most active users/hashtags</h2>
 <div id="top-tweeters" class="section level3">
 <h3>Top tweeters</h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["screen_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"@Rdene915","2":"103"},{"1":"@NikPeachey","2":"50"},{"1":"@MicrosoftEDU","2":"48"},{"1":"@Jforbesrolfe","2":"40"},{"1":"@GeneseeAcademy","2":"39"},{"1":"@shycreature","2":"35"},{"1":"@peacheypubs","2":"34"},{"1":"@shardapullabha2","2":"34"},{"1":"@Erik_Youngman","2":"24"},{"1":"@EdSuperHighway","2":"23"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="htmlwidget-07b538da82fda38eab28" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-07b538da82fda38eab28">{"x":{"filter":"none","editable":{"target":"row","pageLength":5,"lengthMenu":[5,10,15,20]},"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"],["@Rdene915","@NikPeachey","@MicrosoftEDU","@GeneseeAcademy","@Jforbesrolfe","@shycreature","@peacheypubs","@shardapullabha2","@Erik_Youngman","@EdSuperHighway","@Clever_Books","@All_Saints_CC","@MomentLightbulb","@educollabor8ors","@D75TeacherNYC","@global_edtech","@Popk_com","@UoPeople","@letsmasterlearn","@MohGalal88","@ThugAngel11"],[103,50,48,40,40,35,34,34,24,23,21,19,19,18,17,16,16,16,15,15,15]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>screen_name<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="top-hashtags" class="section level3">
 <h3>Top hashtags</h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["hashtag"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"#RemoteLearning","2":"738"},{"1":"#edtech","2":"525"},{"1":"#education","2":"364"},{"1":"#edchat","2":"333"},{"1":"#distancelearning","2":"300"},{"1":"#onlinelearning","2":"219"},{"1":"#esl","2":"203"},{"1":"#k12","2":"176"},{"1":"#remoteteaching","2":"175"},{"1":"#elearning","2":"158"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="htmlwidget-60386b4401208fc580d4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-60386b4401208fc580d4">{"x":{"filter":"none","editable":{"target":"row","pageLength":5,"lengthMenu":[5,10,15,20]},"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["#RemoteLearning","#edtech","#education","#edchat","#distancelearning","#onlinelearning","#esl","#k12","#remoteteaching","#elearning","#COVID19","#tefl","#SEL","#edutwitter","#MicrosoftEDU","#ell","#ela","#elt","#MIEExpert","#eal","#efl","#tesol","#EnglishOnline","#onlineEnglish","#DistanceLearning","#EdTech","#learning","#blendedlearning","#teachers","#educhat"],[743,528,365,335,303,221,203,178,175,159,149,123,118,105,101,91,90,87,87,86,86,86,84,84,83,81,79,75,64,62]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>hashtag<\/th>\n      <th>n<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":2},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="most-popular-tweet" class="section level2 tabset">
 <h2>Most popular tweet</h2>
 <div id="most-retweeted-tweet" class="section level3">
 <h3>Most retweeted tweet</h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["retweet_count"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-04 12:20:00","2":"ELmagazine","3":"What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \\n\\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh","4":"391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div id="htmlwidget-5513ff0da8070705e06c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5513ff0da8070705e06c">{"x":{"filter":"none","editable":{"target":"row","pageLength":5,"lengthMenu":[5,10,15,20]},"data":[["1"],["2020-07-04T12:20:00Z"],["ELmagazine"],["What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \n\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh"],[391]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>created_at<\/th>\n      <th>screen_name<\/th>\n      <th>text<\/th>\n      <th>retweet_count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="most-liked-tweet" class="section level3">
 <h3>Most liked tweet</h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["created_at"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["screen_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["text"],"name":[3],"type":["chr"],"align":["left"]},{"label":["favorite_count"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2020-07-09 00:48:02","2":"MrPStrunk","3":"I hate to get political on my professional twitter, but I feel @BetsyDeVosED needs to know I worked harder during quarantine than before to help provide my Ss with a high quality education. I’m insulted by the assumption of the contrary. #edchat #waledchat #remotelearning","4":"2595"},{"1":"2020-07-04 12:20:00","2":"ELmagazine","3":"What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \\n\\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh","4":"865"},{"1":"2020-07-10 03:52:13","2":"MrsEPark1","3":"Dice talk speaking practice just turned digital!\\U0001f3b2\\n\\nDice is my ABSOLUTE favorite teacher tool &amp; structured dialogue is a MUST for #newcomers #SLIFE #ELL and ALL learners. \\n\\nCan't wait to go back and teach w/ #edtech \\U0001f469\\U0001f3fb‍\\U0001f3eb\\U0001f4bb #distancelearning #remotelearning #edutwitter https://t.co/ujhwSkt1eL","4":"590"},{"1":"2020-07-10 11:25:00","2":"EpochTimes","3":"#Students should consider suing #Harvard and #MIT for charging them full #Tuition despite exclusively relying on #RemoteLearning, said @PressSec @KayleighMcEnany. https://t.co/QLN07QaqSe","4":"534"},{"1":"2020-07-04 15:33:02","2":"E_Sheninger","3":"As it looks like more and more schools will open up with some form of #remotelearning here are some resources to help https://t.co/UfC5DBYJ7z #edchat #suptchat #edutwitter #cpchat #COVIDー19 #covid19 #Covid_19 https://t.co/qSNBbz9EK6","4":"505"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div id="htmlwidget-ff1e2e672603bfd64ef8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ff1e2e672603bfd64ef8">{"x":{"filter":"none","editable":{"target":"row","pageLength":5,"lengthMenu":[5,10,15,20]},"data":[["1","2","3","4","5","6"],["2020-07-09T00:48:02Z","2020-07-04T12:20:00Z","2020-07-10T03:52:13Z","2020-07-10T11:25:00Z","2020-07-06T21:59:18Z","2020-07-04T15:33:02Z"],["MrPStrunk","ELmagazine","MrsEPark1","EpochTimes","CiscoCollab","E_Sheninger"],["I hate to get political on my professional twitter, but I feel @BetsyDeVosED needs to know I worked harder during quarantine than before to help provide my Ss with a high quality education. I’m insulted by the assumption of the contrary. #edchat #waledchat #remotelearning","What are the basic building blocks of a lesson? @Catlin_Tucker shows us how we can translate them to online learning. https://t.co/EDWxJZvBSx \n\n#Learningkeepsgoing #remotelearning #edtechchat #satchat https://t.co/vjarWU3Dgh","Dice talk speaking practice just turned digital!🎲\n\nDice is my ABSOLUTE favorite teacher tool &amp;amp; structured dialogue is a MUST for #newcomers #SLIFE #ELL and ALL learners. \n\nCan't wait to go back and teach w/ #edtech 👩🏻‍🏫💻 #distancelearning #remotelearning #edutwitter https://t.co/ujhwSkt1eL","#Students should consider suing #Harvard and #MIT for charging them full #Tuition despite exclusively relying on #RemoteLearning, said @PressSec @KayleighMcEnany. https://t.co/QLN07QaqSe","\"The priority right now is to help teachers, parents and students incorporate quality learning opportunities into this home space.\" @aruna13 CMO, Cisco Collaboration via @ForbesTech. \n\nhttps://t.co/HscRDNAE7F #VirtualLearning #RemoteLearning","As it looks like more and more schools will open up with some form of #remotelearning here are some resources to help https://t.co/UfC5DBYJ7z #edchat #suptchat #edutwitter #cpchat #COVIDー19 #covid19 #Covid_19 https://t.co/qSNBbz9EK6"],[2600,867,594,534,505,505]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>created_at<\/th>\n      <th>screen_name<\/th>\n      <th>text<\/th>\n      <th>favorite_count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<!-- ### Top emoji -->
+<!-- ```{r emoji, include=FALSE, message=FALSE} -->
+<!-- # install.packages("devtools") -->
+<!-- # devtools::install_github("hadley/emo") -->
+<!-- library(emo) -->
+<!-- ``` -->
+<!-- ```{r showemoji, echo=FALSE, message=FALSE} -->
+<!-- rl_tweets %>% -->
+<!--   mutate(emoji = ji_extract_all(text)) %>% -->
+<!--   unnest(cols = c(emoji)) %>% -->
+<!--   count(emoji, sort = TRUE) %>% -->
+<!--   top_n(20) %>% -->
+<!--   DT::datatable(editable = list(target = 'row', disable = list(columns = c(1, 3, 4)))) -->
+<!-- ``` -->
 </div>
 </div>
-<div id="top-emoji" class="section level3">
-<h3>Top emoji</h3>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["emoji"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"\\U0001f449","2":"55"},{"1":"\\U0001f4bb","2":"32"},{"1":"\\u2705","2":"31"},{"1":"\\U0001f44f","2":"28"},{"1":"\\U0001f4da","2":"26"},{"1":"\\u2693","2":"22"},{"1":"➡️","2":"22"},{"1":"\\u23f0","2":"18"},{"1":"\\U0001f447","2":"17"},{"1":"\\u2728","2":"16"},{"1":"❤️","2":"16"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div id="word-cloud-of-word-frequencies" class="section level2">
-<h2>Word cloud of word frequencies</h2>
+<div id="word-frequencies" class="section level2">
+<h2>Word frequencies</h2>
 <p><img src="twitter_files/figure-html/wordcloud-1.png" width="672" /></p>
 </div>
 
