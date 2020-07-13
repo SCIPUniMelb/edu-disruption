@@ -10,13 +10,43 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## Packages used
 
-The **Tidyverse** package installs a number of other packages for reading data:  
+**Tidyverse** 
 
-•  [httr](https://github.com/r-lib/httr) for web APIs.  
-•  [rvest](https://github.com/tidyverse/rvest) for web scraping.  
+[httr](https://github.com/r-lib/httr) for web APIs.  
 
-[jsonlite](https://github.com/jeroen/jsonlite) for reading JSON data. 
+[rvest](https://github.com/tidyverse/rvest) for scraping information from web pages.  
 
-[rtweet](https://cran.r-project.org/web/packages/rtweet/vignettes/intro.html) for accessing Twitter's REST and stream APIs. 
+<br />
+
+**Data Collection**
+
+[rtweet](https://cran.r-project.org/web/packages/rtweet/vignettes/intro.html) for accessing Twitter's REST and stream APIs.  
+
+[jsonlite](https://github.com/jeroen/jsonlite) for reading JSON data.  
+
+<br />
+
+**Natural Language Processing**
+
+[tidytext](https://www.tidytextmining.com/index.html) implementing tidy principles of Hadley Wickham to text mining.
+
+[tm](https://cran.r-project.org/web/packages/tm/index.html) a comprehensive text mining framework for R. 
+
+[quanteda](https://github.com/quanteda/quanteda) R functions for Quantitative Analysis of Textual Data.  
+
+<br />
+
+**Reproducible Research**
+
+[rmarkdown](https://rmarkdown.rstudio.com/) dynamic documents for R.
+
+[knitr](https://github.com/yihui/knitr) dynamic report generation in R.
+
+[slidify](https://github.com/ramnathv/slidify) create reproducible html5 slides from R markdown.
+
+
+<!-- []()  -->
+
+
 
 
