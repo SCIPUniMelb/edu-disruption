@@ -34,7 +34,7 @@ I began by looking at the following blogging platforms that are popular with tea
 |-------------	|------------- |	-------------	| -------------	|
 | edublogs.org 	| Yes	| Scraping 	| [https://edublogs.org/robots.txt](https://edublogs.org/robots.txt) |
 | blogger.com 	| Yes  	|   API 	| [https://developers.google.com/blogger](https://developers.google.com/blogger)  |
-| edutopia.org 	| No 	|    - 	| [https://developers.google.com/blogger](https://www.edutopia.org/terms-of-use) |    
+| edutopia.org 	| No 	|    - 	| [https://www.edutopia.org/terms-of-use](https://www.edutopia.org/terms-of-use) |    
 
 &nbsp;  
 
