@@ -21,12 +21,15 @@ This resource is a **work in progress** and is being developed following iterati
 ## Scope  {.tabset}
 This resource uses various R programming packages to conduct data collection and carry out some preliminary analysis. 
 
+### Text mining as a method
+![DH Ox Summer School @dhoxss ](imgs/dhoxss.png)
+
 ### Working with textual data
-The terms *Textual analysis* and *Text mining* generally refer to the use of computational methods to search, retrieve, and analyse text data.
+The terms Textual analysis and Text mining generally refer to the use of computational methods to search, retrieve, and analyse text data.
 
-**Textual analysis** is a broad term for various research methods used to describe, interpret and understand texts.
+* **Textual analysis** is a broad term for various research methods used to describe, interpret and understand texts.
 
-**Text mining** seeks to extract useful and important information from heterogeneous document formats through identifying patterns within texts, such as trends in words usage, syntactic structure, etc.
+* **Text mining** seeks to extract useful and important information from heterogeneous document formats through identifying patterns within texts, such as trends in words usage, syntactic structure, etc.
 
 ### Text mining (video)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xxqrIZyKKuk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
