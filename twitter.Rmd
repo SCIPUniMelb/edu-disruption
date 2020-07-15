@@ -45,8 +45,11 @@ A surge in reported cases has led to a return to Stage 3 'Stay at Home' restrict
 
 ```{r query, echo=FALSE, message=FALSE}
 
-## search for tweets
-tweets <- search_tweets(q = "#remotelearning", n = 18000, include_rts = FALSE, `-filter` = "replies", lang = "en")
+## search for live tweets
+# tweets <- search_tweets(q = "#remotelearning", n = 18000, include_rts = FALSE, `-filter` = "replies", lang = "en")
+
+## load saved results
+tweets <- tibble(read_csv(here::here("Data", "tweets-remotelearning.csv")))
 
 ```
 
@@ -61,7 +64,7 @@ tweets %>%
   select(created_at, screen_name, text, retweet_count)  %>%
   DT::datatable(editable = list(target = 'row', pageLength = 5, lengthMenu = c(5, 10, 15, 20)))
 
-write_as_csv(tweets, "data/tweets-remotelearning.csv")
+# write_as_csv(tweets, "data/tweets-remotelearning.csv")
 
 ```
 
@@ -131,50 +134,22 @@ tweets %>%
 
 ```
 
-<!-- ### Top emoji -->
 
-<!-- ```{r emoji, include=FALSE, message=FALSE} -->
-<!-- # install.packages("devtools") -->
-<!-- # devtools::install_github("hadley/emo") -->
-<!-- library(emo) -->
-<!-- ``` -->
+## Sentiment matching
 
-<!-- ```{r showemoji, echo=FALSE, message=FALSE} -->
-<!-- rl_tweets %>% -->
-<!--   mutate(emoji = ji_extract_all(text)) %>% -->
-<!--   unnest(cols = c(emoji)) %>% -->
-<!--   count(emoji, sort = TRUE) %>% -->
-<!--   top_n(20) %>% -->
-<!--   DT::datatable(editable = list(target = 'row', disable = list(columns = c(1, 3, 4)))) -->
+The `tidytext` package makes it easy to match words against different lexicons (vocabularies). For this analysis we will compare results using the `NRC` and `bing` lexicons.  
 
-<!-- ``` -->
+<br />  
+<!-- The get_sentiments() function returns a data frame, a simple table join makes the lexicon part of the analysis. -->
+
+![](imgs/remotelearning_nrc_lexicon.png)
+
+<br />
+
+![](imgs/remotelearning_bing_lexicon.png)
 
 
-## Word frequencies
-
-```{r words, include=FALSE, message=FALSE}
-words <- tweets %>%
-  mutate(text = str_remove_all(text, "&amp;|&lt;|&gt;"),
-         text = str_remove_all(text, "\\s?(f|ht)(tp)(s?)(://)([^\\.]*)[\\.|/](\\S*)"),
-         text = str_remove_all(text, "[^\x01-\x7F]")) %>%
-  unnest_tokens(word, text, token = "tweets") %>%
-  filter(!word %in% stop_words$word,
-         !word %in% str_remove_all(stop_words$word, "'"),
-         str_detect(word, "[a-z]"),
-         !str_detect(word, "^#"),         
-         !str_detect(word, "@\\S+")) %>%
-  count(word, sort = TRUE)
-```
 
 
-```{r wordcloud, echo=FALSE, message=FALSE}
-
-# Then we use the wordcloud package to create a visualisation of the word frequencies.
-
-library(wordcloud)
-words %>%
-  with(wordcloud(word, n, random.order = FALSE, max.words = 50, colors = "#F29545"))
-
-```
 
 
