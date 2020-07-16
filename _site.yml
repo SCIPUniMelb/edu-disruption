@@ -22,7 +22,9 @@ navbar:
         - text: "---------"          
         - text: "Support docs"          
         - text: "API slides"
-          href: slides/rc-apis.html          
+          href: slides/rc-apis.html       
+        - text: "Resources"
+          href: resources.html      
         - text: "Packages"
           href: packages.html
         - text: "Glossary"
@@ -48,4 +50,5 @@ output:
       collapsed: false
     fig_caption: yes
     includes:
+      in_header: ga.html
       after_body: footer.html
