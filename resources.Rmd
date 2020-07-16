@@ -10,11 +10,13 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 ## List of Resources
 
-### Digital methods (Text Analysis)
+**Digital methods (Text Analysis)**
 
 Text Analysis and Distant Reading using R. Schweinberger, Martin. 2020. The University of Queensland.  https://slcladal.github.io/textanalysis.html.  
 
-### Articles
+<br />  
+
+**Articles**
 
 Charles Dickens: using data analysis to shed new light on old characters
 https://theconversation.com/charles-dickens-using-data-analysis-to-shed-new-light-on-old-characters-140194  
@@ -22,12 +24,15 @@ https://theconversation.com/charles-dickens-using-data-analysis-to-shed-new-ligh
 Agatha Christie And Nuns Tell A Tale Of Alzheimer's 
 https://www.npr.org/templates/story/story.php?storyId=127211884   
 
+<br />  
 
-### Research projects & resources
+**Research projects & resources**
 
 http://livingwithmachines.ac.uk/ 
 
 https://github.com/GLAM-Workbench/trove-journals/blob/master/digital-journals-with-text.md
+
+<br />
 
 
 

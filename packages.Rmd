@@ -44,6 +44,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 [slidify](https://github.com/ramnathv/slidify) create reproducible html5 slides from R markdown.
 
+<br />
 
 <!-- []()  -->
 
