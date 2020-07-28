@@ -2,7 +2,6 @@
 ## https://www.hvitfeldt.me/blog/visualizing-trigrams-with-the-tidyverse/
 
 # We will be using the following packages:  
-
 library(tidyverse)
 library(tidytext)
 library(purrrlyr)
